@@ -7,7 +7,8 @@
     <div>
 
         <h2 class="fw-bold mb-1">
-            📦 Data Produk
+            <i class="bi bi-bag-fill text-primary"></i>
+            Data Produk
         </h2>
 
         <p class="text-muted mb-0">
@@ -27,7 +28,7 @@
 
 </div>
 
-<div class="card mb-4">
+<div class="card mb-4 filter-card">
 
     <div class="card-body">
 
@@ -49,81 +50,108 @@
             type="text"
             name="search"
             class="form-control"
-            placeholder="🔍 Cari produk..."
+            placeholder="Cari produk..."
             value="{{ request('search') }}">
 
     </div>
 
     <div class="col-md-3">
 
-        <select
-            name="category"
-            class="form-select">
+        <div class="custom-select" data-type="category">
 
-            <option value="">
+            <div class="custom-select-trigger">
+                <span>
+                    @if(request('category'))
+                        {{ $categories->firstWhere('id', request('category'))->name ?? 'Semua Kategori' }}
+                    @else
+                        Semua Kategori
+                    @endif
+                </span>
 
-                Semua Kategori
+                <i class="bi bi-chevron-down"></i>
+            </div>
 
-            </option>
+            <div class="custom-options">
 
-            @foreach($categories as $category)
+                <div class="custom-option {{ !request('category') ? 'selected' : '' }}"
+                    data-value="">
+                    Semua Kategori
+                </div>
 
-                <option
-                    value="{{ $category->id }}"
-                    {{ request('category') == $category->id ? 'selected' : '' }}>
+                @foreach($categories as $category)
 
-                    {{ $category->name }}
+                    <div
+                        class="custom-option {{ request('category') == $category->id ? 'selected' : '' }}"
+                        data-value="{{ $category->id }}">
 
-                </option>
+                        {{ $category->name }}
 
-            @endforeach
+                    </div>
 
-        </select>
+                @endforeach
+
+            </div>
+
+        </div>
+
+        <input type="hidden" name="category" id="category-input"
+            value="{{ request('category') }}">
 
     </div>
 
     <div class="col-md-2">
 
-        <select
-            name="sort"
-            class="form-select">
+        <div class="custom-select" data-type="sort">
 
-            <option value="latest"
-                {{ request('sort')=='latest'?'selected':'' }}>
+            <div class="custom-select-trigger">
 
-                Terbaru
+                <span>
+                    @switch(request('sort'))
+                        @case('oldest') Terlama @break
+                        @case('price_low') Harga Termurah @break
+                        @case('price_high') Harga Termahal @break
+                        @case('name') Nama A-Z @break
+                        @default Terbaru
+                    @endswitch
+                </span>
 
-            </option>
+                <i class="bi bi-chevron-down"></i>
 
-            <option value="oldest"
-                {{ request('sort')=='oldest'?'selected':'' }}>
+            </div>
 
-                Terlama
+            <div class="custom-options">
 
-            </option>
+                <div class="custom-option {{ request('sort', 'latest') == 'latest' ? 'selected' : '' }}"
+                    data-value="latest">
+                    Terbaru
+                </div>
 
-            <option value="price_low"
-                {{ request('sort')=='price_low'?'selected':'' }}>
+                <div class="custom-option {{ request('sort') == 'oldest' ? 'selected' : '' }}"
+                    data-value="oldest">
+                    Terlama
+                </div>
 
-                Harga Termurah
+                <div class="custom-option {{ request('sort') == 'price_low' ? 'selected' : '' }}"
+                    data-value="price_low">
+                    Harga Termurah
+                </div>
 
-            </option>
+                <div class="custom-option {{ request('sort') == 'price_high' ? 'selected' : '' }}"
+                    data-value="price_high">
+                    Harga Termahal
+                </div>
 
-            <option value="price_high"
-                {{ request('sort')=='price_high'?'selected':'' }}>
+                <div class="custom-option {{ request('sort') == 'name' ? 'selected' : '' }}"
+                    data-value="name">
+                    Nama A-Z
+                </div>
 
-                Harga Termahal
+            </div>
 
-            </option>
+        </div>
 
-            <option value="name"
-                {{ request('sort')=='name'?'selected':'' }}>
-
-                Nama A-Z
-
-            </option>
-
-        </select>
+        <input type="hidden" name="sort" id="sort-input"
+            value="{{ request('sort') ?? 'latest' }}">
 
     </div>
 
@@ -186,209 +214,207 @@
 
         <div class="table-responsive">
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <div>
+                <div>
 
-        <h5 class="fw-bold mb-0">
-            <i class="bi bi-box-seam-fill text-primary me-2"></i>
+                    <h5 class="fw-bold mb-0">
+                        <i class="bi bi-box-seam-fill text-primary me-2"></i>
 
-            Daftar Produk
+                        Daftar Produk
 
-        </h5>
-
-    </div>
-
-    <span class="badge rounded-pill bg-primary px-3 py-2">
-
-        Total :
-        {{ $products->total() }}
-
-        Produk
-
-    </span>
-
-</div>
-
-</div>
-
-<table class="table table-striped table-hover align-middle">
-
-    <thead>
-
-        <tr>
-
-            <th>No</th>
-
-            <th>Gambar</th>
-
-            <th>Nama</th>
-
-            <th>Kategori</th>
-
-            <th>Harga</th>
-
-            <th>Stok</th>
-
-            <th>Aksi</th>
-
-        </tr>
-
-    </thead>
-
-    <tbody>
-
-        @forelse($products as $product)
-
-        <tr>
-
-            <td>{{ $products->firstItem() + $loop->index }}</td>
-
-            <td>
-                @if($product->image)
-                    <img
-                        src="{{ asset('storage/'.$product->image) }}"
-                        class="img-thumbnail preview-image"
-                        style="width:80px;height:80px;object-fit:cover;cursor:pointer;"
-                        data-bs-toggle="modal"
-                        data-bs-target="#imageModal"
-                        data-image="{{ asset('storage/'.$product->image) }}">
-                @endif
-            </td>
-
-            <td>
-
-                <div class="fw-semibold">
-
-                    {{ $product->name }}
+                    </h5>
 
                 </div>
 
-                <small class="text-muted">
+                <span class="hang-tag">
 
-                    Kode: ABS-{{ str_pad($product->id, 3, '0', STR_PAD_LEFT) }}
+                    Total :
+                    {{ $products->total() }}
 
-                </small>
-
-            </td>
-
-            <td>{{ $product->category->name }}</td>
-
-            <td>
-
-                <span class="fw-bold text-primary">
-
-                    Rp {{ number_format($product->price,0,',','.') }}
+                    Produk
 
                 </span>
 
-            </td>
+            </div>
 
-            <td>
+            <table class="table table-striped table-hover align-middle">
 
-                @if($product->stock == 0)
+                <thead>
 
-                    <span class="badge bg-danger">
+                    <tr>
 
-                        Habis (0)
+                        <th>No</th>
 
-                    </span>
+                        <th>Gambar</th>
 
-                @elseif($product->stock <= 10)
+                        <th>Nama</th>
 
-                    <span class="badge bg-warning text-dark">
+                        <th>Kategori</th>
 
-                        Hampir Habis ({{ $product->stock }})
+                        <th>Harga</th>
 
-                    </span>
+                        <th>Stok</th>
 
-                @else
+                        <th>Aksi</th>
 
-                    <span class="badge bg-success">
+                    </tr>
 
-                        Tersedia ({{ $product->stock }})
+                </thead>
 
-                    </span>
+                <tbody>
 
-                @endif
+                    @forelse($products as $product)
 
-            </td>
+                    <tr>
 
-            <td class="text-nowrap">
+                        <td>{{ $products->firstItem() + $loop->index }}</td>
 
-                <a href="{{ route('admin.products.edit',$product) }}"
-                    class="btn btn-warning btn-action"
-                    data-bs-toggle="tooltip"
-                    title="Edit Data">
+                        <td>
+                            @if($product->image)
+                                <img
+                                    src="{{ asset('storage/'.$product->image) }}"
+                                    class="img-thumbnail preview-image"
+                                    style="width:80px;height:80px;object-fit:cover;cursor:pointer;"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#imageModal"
+                                    data-image="{{ asset('storage/'.$product->image) }}">
+                            @endif
+                        </td>
 
-                    <i class="bi bi-pencil-fill"></i>
+                        <td>
 
-                </a>
+                            <div class="fw-semibold">
 
-                <form
-                    action="{{ route('admin.products.destroy',$product) }}"
-                    method="POST"
-                    class="d-inline">
+                                {{ $product->name }}
 
-                    @csrf
-                    @method('DELETE')
+                            </div>
 
-                    <button
-                        type="button"
-                        class="btn btn-danger btn-action btn-delete"
-                        data-bs-toggle="tooltip"
-                        title="Hapus Permanen">
+                            <small class="text-muted">
 
-                        <i class="bi bi-trash-fill"></i>
+                                Kode: ABS-{{ str_pad($product->id, 3, '0', STR_PAD_LEFT) }}
 
-                    </button>
+                            </small>
 
-                </form>
+                        </td>
 
-            </td>
+                        <td>{{ $product->category->name }}</td>
 
-        </tr>
+                        <td>
 
-        @empty
+                            <span class="fw-bold text-primary">
 
-        <tr>
+                                Rp {{ number_format($product->price,0,',','.') }}
 
-            <td colspan="7" class="text-center py-4">
+                            </span>
 
-                @if(request('search'))
+                        </td>
 
-                    Tidak ditemukan produk dengan kata kunci
-                    <strong>"{{ request('search') }}"</strong>
+                        <td>
 
-                @else
+                            @if($product->stock == 0)
 
-                    <div class="py-5 text-center">
+                                <span class="badge bg-danger">
 
-                        <i class="bi bi-box-seam display-1 text-secondary"></i>
+                                    Habis (0)
 
-                        <h5 class="mt-3">
-                            Belum ada produk
-                        </h5>
+                                </span>
 
-                        <p class="text-muted">
+                            @elseif($product->stock <= 10)
 
-                            Silakan tambahkan produk pertama.
+                                <span class="badge bg-warning text-dark">
 
-                        </p>
+                                    Hampir Habis ({{ $product->stock }})
 
-                    </div>
+                                </span>
 
-                @endif
+                            @else
 
-            </td>
+                                <span class="badge bg-success">
 
-        </tr>
+                                    Tersedia ({{ $product->stock }})
 
-        @endforelse
+                                </span>
 
-    </tbody>
+                            @endif
 
-</table>
+                        </td>
+
+                        <td class="text-nowrap">
+
+                            <a href="{{ route('admin.products.edit',$product) }}"
+                                class="btn btn-warning btn-action"
+                                data-bs-toggle="tooltip"
+                                title="Edit Data">
+
+                                <i class="bi bi-pencil-fill"></i>
+
+                            </a>
+
+                            <form
+                                action="{{ route('admin.products.destroy',$product) }}"
+                                method="POST"
+                                class="d-inline">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-action btn-delete"
+                                    data-bs-toggle="tooltip"
+                                    title="Hapus Permanen">
+
+                                    <i class="bi bi-trash-fill"></i>
+
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    @empty
+
+                    <tr>
+
+                        <td colspan="7" class="text-center py-4">
+
+                            @if(request('search'))
+
+                                Tidak ditemukan produk dengan kata kunci
+                                <strong>"{{ request('search') }}"</strong>
+
+                            @else
+
+                                <div class="py-5 text-center">
+
+                                    <i class="bi bi-box-seam display-1 text-secondary"></i>
+
+                                    <h5 class="mt-3">
+                                        Belum ada produk
+                                    </h5>
+
+                                    <p class="text-muted">
+
+                                        Silakan tambahkan produk pertama.
+
+                                    </p>
+
+                                </div>
+
+                            @endif
+
+                        </td>
+
+                    </tr>
+
+                    @endforelse
+
+                </tbody>
+
+            </table>
 
             @if($products->hasPages())
 
@@ -449,6 +475,77 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.dataset.image;
 
         });
+
+    });
+
+});
+
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.querySelectorAll('.custom-select').forEach(select => {
+
+        const trigger = select.querySelector('.custom-select-trigger');
+        const options = select.querySelectorAll('.custom-option');
+
+        trigger.addEventListener('click', function (e) {
+
+            e.stopPropagation();
+
+            document.querySelectorAll('.custom-select').forEach(other => {
+
+                if (other !== select) {
+                    other.classList.remove('open');
+                }
+
+            });
+
+            select.classList.toggle('open');
+
+        });
+
+        options.forEach(option => {
+
+            option.addEventListener('click', function () {
+
+                const value = this.dataset.value;
+                const text = this.textContent.trim();
+
+                trigger.querySelector('span').textContent = text;
+
+                if (select.dataset.type === 'category') {
+
+                    document.getElementById('category-input').value = value;
+
+                }
+
+                if (select.dataset.type === 'sort') {
+
+                    document.getElementById('sort-input').value = value;
+
+                }
+
+                options.forEach(item => {
+                    item.classList.remove('selected');
+                });
+
+                this.classList.add('selected');
+
+                select.classList.remove('open');
+
+            });
+
+        });
+
+    });
+
+    document.addEventListener('click', function () {
+
+        document.querySelectorAll('.custom-select')
+            .forEach(select => select.classList.remove('open'));
 
     });
 

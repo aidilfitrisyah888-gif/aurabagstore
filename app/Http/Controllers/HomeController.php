@@ -12,11 +12,11 @@ class HomeController extends Controller
         // Ambil hanya 6 produk terbaru untuk homepage
         $products = Product::with('category')
             ->latest()
-            ->take(6)
+            ->take(9)
             ->get();
 
         // Ambil semua kategori
-        $categories = Category::all();
+        $categories = Category::withCount('products')->get();
 
         // Statistik
         $totalProducts = Product::count();

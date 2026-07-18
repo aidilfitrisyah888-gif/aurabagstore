@@ -7,7 +7,8 @@
     <div>
 
         <h2 class="fw-bold mb-1">
-            👤 Data User
+            <i class="bi bi-people-fill text-primary"></i>
+            Data User
         </h2>
 
         <p class="text-muted mb-0">
@@ -50,7 +51,7 @@
                     type="text"
                     name="search"
                     class="form-control"
-                    placeholder="🔍 Cari nama atau email..."
+                    placeholder="Cari nama atau email..."
                     value="{{ request('search') }}">
 
             </div>
@@ -98,7 +99,7 @@
 
         </div>
 
-        <span class="badge bg-primary">
+        <span class="hang-tag">
 
             Total : {{ $users->total() }} User
 
@@ -112,7 +113,7 @@
 
         <table class="table table-hover mb-0">
 
-            <thead class="table-light">
+            <thead>
 
                 <tr>
 
@@ -166,7 +167,7 @@
                         <div class="d-flex justify-content-center gap-2">
 
                         <a href="{{ route('admin.users.edit',$user) }}"
-                            class="btn btn-warning btn-sm"
+                            class="btn btn-warning btn-sm btn-action"
                             data-bs-toggle="tooltip"
                             title="Edit Data">
 
@@ -186,7 +187,7 @@
 
                             <button
                                 type="button"
-                                class="btn btn-danger btn-sm btn-delete"
+                                class="btn btn-danger btn-sm btn-action btn-delete"
                                 data-bs-toggle="tooltip"
                                 title="Hapus Permanen">
 

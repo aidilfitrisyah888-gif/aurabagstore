@@ -118,6 +118,7 @@
 
                 <button class="btn btn-danger">
 
+                    <i class="bi bi-box-arrow-right"></i>
                     Logout
 
                 </button>
@@ -159,9 +160,9 @@
 
                     showCancelButton: true,
 
-                    confirmButtonColor: '#dc3545',
+                    confirmButtonColor: '#A9564B',
 
-                    cancelButtonColor: '#6c757d',
+                    cancelButtonColor: '#6b7280',
 
                     confirmButtonText: 'Ya, Hapus!',
 

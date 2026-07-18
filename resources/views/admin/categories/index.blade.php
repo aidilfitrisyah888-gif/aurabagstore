@@ -7,7 +7,8 @@
     <div>
 
         <h2 class="fw-bold mb-1">
-            📂 Data Kategori
+            <i class="bi bi-bookmark-fill text-primary"></i>
+            Data Kategori
         </h2>
 
         <p class="text-muted mb-0">
@@ -50,7 +51,7 @@
                             type="text"
                             name="search"
                             class="form-control"
-                            placeholder="🔍 Cari kategori..."
+                            placeholder="Cari kategori..."
                             value="{{ request('search') }}">
 
                     </div>
@@ -98,7 +99,7 @@
 
         </div>
 
-        <span class="badge bg-primary">
+        <span class="hang-tag">
 
             Total : {{ $categories->total() }} Kategori
 
@@ -112,7 +113,7 @@
 
         <table class="table table-hover mb-0">
 
-            <thead class="table-light">
+            <thead>
 
                 <tr>
 
@@ -184,7 +185,7 @@
 
                             <a
                                 href="{{ route('admin.categories.edit',$category) }}"
-                                class="btn btn-warning btn-sm"
+                                class="btn btn-warning btn-sm btn-action"
                                 data-bs-toggle="tooltip"
                                 title="Edit Data">
 
@@ -202,7 +203,7 @@
 
                                 <button
                                     type="button"
-                                    class="btn btn-danger btn-sm btn-delete"
+                                    class="btn btn-danger btn-sm btn-action btn-delete"
                                     data-bs-toggle="tooltip"
                                     title="Hapus Permanen">
 
