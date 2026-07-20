@@ -10,9 +10,14 @@ class ProductController extends Controller
 {
     public function show($slug)
     {
-        $product = Product::with('category')
-            ->where('slug', $slug)
-            ->firstOrFail();
+        $product = Product::with([
+            'category',
+            'images' => function ($query) {
+                $query->orderBy('sort_order');
+            }
+        ])
+        ->where('slug', $slug)
+        ->firstOrFail();
 
         $relatedProducts = Product::with('category')
             ->where('category_id', $product->category_id)

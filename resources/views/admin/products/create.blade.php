@@ -141,26 +141,126 @@
 
             </div>
 
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label fw-semibold">
+                    <i class="bi bi-palette me-2 text-primary"></i>
+                    Motif
+                </label>
+
+                <input
+                    type="text"
+                    name="motif"
+                    class="form-control @error('motif') is-invalid @enderror"
+                    value="{{ old('motif') }}"
+                    placeholder="Contoh: Polos">
+
+                @error('motif')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label fw-semibold">
+                    <i class="bi bi-layers me-2 text-primary"></i>
+                    Bahan
+                </label>
+
+                <input
+                    type="text"
+                    name="bahan"
+                    class="form-control @error('bahan') is-invalid @enderror"
+                    value="{{ old('bahan') }}"
+                    placeholder="Contoh: Kanvas">
+
+                @error('bahan')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label fw-semibold">
+                    <i class="bi bi-rulers me-2 text-primary"></i>
+                    Ukuran
+                </label>
+
+                <input
+                    type="text"
+                    name="ukuran"
+                    class="form-control @error('ukuran') is-invalid @enderror"
+                    value="{{ old('ukuran') }}"
+                    placeholder="Contoh: 40 × 30 × 15 cm">
+
+                @error('ukuran')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+
             <div class="col-12 mb-3">
 
                 <label class="form-label fw-semibold">
+
                     <i class="bi bi-card-text me-2"></i>
-                    Deskripsi
+
+                    Deskripsi Singkat
 
                 </label>
 
                 <textarea
-                    name="description"
-                    rows="5"
-                    class="form-control @error('description') is-invalid @enderror"
-                    placeholder="Deskripsikan produk..."
-                    style="resize:none">{{ old('description') }}</textarea>
+                    name="short_description"
+                    rows="3"
+                    class="form-control @error('short_description') is-invalid @enderror"
+                    placeholder="Deskripsi singkat untuk tampilan Home dan Produk..."
+                    style="resize:none">{{ old('short_description') }}</textarea>
 
-                    @error('description')
+                @error('short_description')
+
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
-                    @enderror
+
+                @enderror
+
+            </div>
+
+
+            <div class="col-12 mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    <i class="bi bi-file-text me-2"></i>
+
+                    Deskripsi Lengkap
+
+                </label>
+
+                <textarea
+                    name="long_description"
+                    rows="7"
+                    class="form-control @error('long_description') is-invalid @enderror"
+                    placeholder="Tulis deskripsi lengkap produk..."
+                    style="resize:vertical">{{ old('long_description') }}</textarea>
+
+                @error('long_description')
+
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+
+                @enderror
 
             </div>
 
@@ -187,11 +287,11 @@
 
             </div>
 
-            <div class="col-md-6 mb-3">
+            <div class="col-12 mb-3">
 
                 <label class="form-label fw-semibold">
 
-                    <i class="bi bi-image me-2 text-primary"></i>
+                    <i class="bi bi-images me-2 text-primary"></i>
 
                     Gambar Produk
 
@@ -199,10 +299,18 @@
 
                 <input
                     type="file"
-                    name="image"
-                    id="image"
+                    name="images[]"
+                    id="images"
                     class="form-control"
-                    accept="image/*">
+                    accept="image/*"
+                    multiple>
+
+                <small class="text-muted">
+
+                    Pilih beberapa gambar sekaligus.
+                    <strong>Gambar pertama akan menjadi gambar utama produk.</strong>
+
+                </small>
 
             </div>
             
@@ -210,42 +318,35 @@
 
             <div class="card border-0 shadow-sm mb-4">
 
-                <div class="card-body text-center card-preview">
+                <div class="card-body">
 
-                    <i
-                        id="previewIcon"
-                        class="bi bi-image display-2 text-secondary">
-                    </i>
+                    <h5 class="fw-bold mb-3">
 
-                    <h5 class="mt-3 fw-bold">
+                        <i class="bi bi-images text-primary me-2"></i>
+
                         Preview Gambar
+
                     </h5>
 
-                    <img
-                        id="preview"
-                        src=""
-                        class="img-thumbnail shadow-sm"
-                        width="230"
-                        style="display:none;">
+                    <div
+                        id="previewContainer"
+                        class="row g-3">
 
-                    <p
-                        id="previewText"
-                        class="text-muted mt-3">
+                        <div
+                            id="emptyPreview"
+                            class="col-12 text-center py-4">
 
-                        Belum ada gambar dipilih
+                            <i class="bi bi-images display-3 text-secondary"></i>
 
-                    </p>
+                            <p class="text-muted mt-3 mb-0">
 
-                    <button
-                        type="button"
-                        id="removePreview"
-                        class="btn btn-outline-danger btn-sm mt-2 d-none">
+                                Belum ada gambar dipilih
 
-                        <i class="bi bi-trash"></i>
+                            </p>
 
-                        Hapus Gambar
+                        </div>
 
-                    </button>
+                    </div>
 
                 </div>
 
@@ -281,48 +382,85 @@
 
     <script>
 
-    const input = document.getElementById('image');
-    const preview = document.getElementById('preview');
-    const text = document.getElementById('previewText');
-    const removeBtn = document.getElementById('removePreview');
+    const input = document.getElementById('images');
+    const previewContainer = document.getElementById('previewContainer');
 
-    input.addEventListener('change', function(e){
+    input.addEventListener('change', function () {
 
-        const file = e.target.files[0];
+        previewContainer.innerHTML = '';
 
-        if(file){
+        const files = Array.from(this.files);
 
-            const reader = new FileReader();
+        if (files.length === 0) {
 
-            reader.onload = function(event){
+            previewContainer.innerHTML = `
+                <div class="col-12 text-center py-4">
 
-                preview.src = event.target.result;
-                preview.style.display = "block";
-                document.getElementById("previewIcon").style.display = "none";
+                    <i class="bi bi-images display-3 text-secondary"></i>
 
-                text.innerHTML = file.name;
+                    <p class="text-muted mt-3 mb-0">
+                        Belum ada gambar dipilih
+                    </p>
 
-                removeBtn.classList.remove('d-none');
+                </div>
+            `;
 
-            }
-
-            reader.readAsDataURL(file);
+            return;
 
         }
 
-    });
+        files.forEach((file, index) => {
 
-    removeBtn.addEventListener('click', function(){
+            const reader = new FileReader();
 
-        input.value = "";
+            reader.onload = function (event) {
 
-        preview.src = "";
-        preview.style.display = "none";
-        document.getElementById("previewIcon").style.display = "block";
+                const col = document.createElement('div');
 
-        text.innerHTML = "Belum ada gambar dipilih";
+                col.className = 'col-6 col-md-4 col-lg-3';
 
-        removeBtn.classList.add('d-none');
+                col.innerHTML = `
+
+                    <div class="card h-100 shadow-sm">
+
+                        <img
+                            src="${event.target.result}"
+                            class="card-img-top"
+                            style="height:160px; object-fit:cover;">
+
+                        <div class="card-body p-2 text-center">
+
+                            ${
+                                index === 0
+                                ?
+                                '<span class="badge bg-primary">Gambar Utama</span>'
+                                :
+                                `<small class="text-muted">
+                                    Gambar ${index + 1}
+                                </small>`
+                            }
+
+                            <div
+                                class="small text-truncate mt-1"
+                                title="${file.name}">
+
+                                ${file.name}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                previewContainer.appendChild(col);
+
+            };
+
+            reader.readAsDataURL(file);
+
+        });
 
     });
 

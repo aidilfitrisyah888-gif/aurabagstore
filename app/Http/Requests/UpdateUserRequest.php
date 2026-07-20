@@ -21,4 +21,19 @@ class UpdateUserRequest extends FormRequest
             'password' => 'nullable|min:8|confirmed',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama pengguna wajib diisi.',
+            'name.max' => 'Nama pengguna maksimal :max karakter.',
+
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
+
+            'password.min' => 'Kata sandi minimal :min karakter.',
+            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+        ];
+    }
 }

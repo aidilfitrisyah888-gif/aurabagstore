@@ -157,26 +157,111 @@
 
             </div>
 
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label fw-semibold">
+                    <i class="bi bi-palette me-2 text-primary"></i>
+                    Motif
+                </label>
+
+                <input
+                    type="text"
+                    name="motif"
+                    class="form-control @error('motif') is-invalid @enderror"
+                    value="{{ old('motif', $product->motif) }}">
+
+                @error('motif')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label fw-semibold">
+                    <i class="bi bi-layers me-2 text-primary"></i>
+                    Bahan
+                </label>
+
+                <input
+                    type="text"
+                    name="bahan"
+                    class="form-control @error('bahan') is-invalid @enderror"
+                    value="{{ old('bahan', $product->bahan) }}">
+
+                @error('bahan')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label fw-semibold">
+                    <i class="bi bi-rulers me-2 text-primary"></i>
+                    Ukuran
+                </label>
+
+                <input
+                    type="text"
+                    name="ukuran"
+                    class="form-control @error('ukuran') is-invalid @enderror"
+                    value="{{ old('ukuran', $product->ukuran) }}">
+
+                @error('ukuran')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+
+
             <div class="col-12 mb-3">
 
                 <label class="form-label fw-semibold">
-
-                <i class="bi bi-card-text me-2"></i>
-
-                    Deskripsi
-
+                    <i class="bi bi-card-text me-2"></i>
+                    Deskripsi Singkat
                 </label>
 
                 <textarea
-                    style="resize:none"
-                    name="description"
-                    rows="5"
-                    class="form-control @error('description') is-invalid @enderror">{{ old('description', $product->description) }}</textarea>
+                    name="short_description"
+                    rows="3"
+                    class="form-control @error('short_description') is-invalid @enderror"
+                    style="resize:none">{{ old('short_description', $product->short_description) }}</textarea>
 
-                @error('description')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
+                @error('short_description')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+            </div>
+
+
+            <div class="col-12 mb-3">
+
+                <label class="form-label fw-semibold">
+                    <i class="bi bi-file-text me-2"></i>
+                    Deskripsi Lengkap
+                </label>
+
+                <textarea
+                    name="long_description"
+                    rows="7"
+                    class="form-control @error('long_description') is-invalid @enderror"
+                    style="resize:vertical">{{ old('long_description', $product->long_description) }}</textarea>
+
+                @error('long_description')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
                 @enderror
 
             </div>
@@ -205,91 +290,187 @@
 
             </div>
 
-            <div class="col-md-6 mb-3">
+            {{-- =========================
+                GAMBAR LAMA
+            ========================= --}}
 
-                    <label class="form-label fw-semibold">
+            <div class="col-12 mb-4">
 
-                    <i class="bi bi-image text-primary me-2"></i>
+                <label class="form-label fw-semibold">
 
-                        Ganti Gambar (Opsional)
+                    <i class="bi bi-images text-primary me-2"></i>
 
-                    </label>
+                    Gambar Produk Saat Ini
 
-                    <input
-                        type="file"
-                        name="image"
-                        id="image"
-                        class="form-control @error('image') is-invalid @enderror"
-                        accept="image/*">
+                </label>
 
-                    @error('image')
 
-                        <div class="invalid-feedback">
+                <div class="row g-3">
 
-                            {{ $message }}
+                    @forelse($product->images as $image)
+
+                        <div class="col-6 col-md-4 col-lg-3">
+
+                            <div class="card shadow-sm h-100">
+
+                                <img
+                                    src="{{ asset('storage/'.$image->image) }}"
+                                    class="card-img-top"
+                                    style="height:180px; object-fit:cover;">
+
+                                <div class="card-body text-center p-2">
+
+                                    @if($image->sort_order == 0)
+
+                                        <span class="badge bg-primary d-block mb-2">
+                                            <i class="bi bi-star-fill"></i>
+                                            Gambar Utama
+                                        </span>
+
+                                    @else
+
+                                        <small class="text-muted d-block mb-2">
+                                            Gambar {{ $image->sort_order + 1 }}
+                                        </small>
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-outline-primary btn-sm mb-2"
+                                            data-action="{{ route('admin.products.images.primary', $image) }}"
+                                            onclick="setPrimaryImage(this.dataset.action)">
+
+                                            <i class="bi bi-star"></i>
+                                            Jadikan Utama
+
+                                        </button>
+
+                                    @endif
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-outline-danger btn-sm"
+                                        data-action="{{ route('admin.products.images.destroy', $image) }}"
+                                        onclick="deleteImage(this.dataset.action)">
+
+                                        <i class="bi bi-trash"></i>
+                                        Hapus
+
+                                    </button>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
-                    @enderror
+                    @empty
+
+                        <div class="col-12">
+
+                            <div class="alert alert-secondary">
+
+                                Belum ada gambar produk.
+
+                            </div>
+
+                        </div>
+
+                    @endforelse
 
                 </div>
 
-                <div class="card border-0 shadow-sm mb-4">
+            </div>
 
-                    <div class="card-body text-center card-preview">
 
-                        <i
-                            id="previewIcon"
-                            class="bi bi-image display-2 text-secondary"
-                            {{ $product->image ? 'style=display:none' : '' }}>
-                        </i>
+            {{-- =========================
+                UPLOAD GAMBAR BARU
+            ========================= --}}
 
-                        <h5 class="mt-3 fw-bold">
-                            Preview Gambar
-                        </h5>
+            <div class="col-12 mb-3">
 
-                        <img
-                            id="preview"
-                            src="{{ $product->image ? asset('storage/'.$product->image) : '' }}"
-                            class="img-thumbnail shadow-sm"
-                            width="230"
-                            {{ $product->image ? '' : 'style=display:none' }}>
+                <label class="form-label fw-semibold">
 
-                        <p
-                            id="previewText"
-                            class="text-muted mt-3">
+                    <i class="bi bi-cloud-arrow-up text-primary me-2"></i>
 
-                            {{ $product->image ? basename($product->image) : 'Belum ada gambar dipilih' }}
+                    Tambah Gambar Baru
 
-                        </p>
+                </label>
 
-                        <button
-                            type="button"
-                            id="removePreview"
-                            class="btn btn-outline-danger btn-sm mt-2 d-none">
+                <input
+                    type="file"
+                    name="images[]"
+                    id="images"
+                    class="form-control @error('images.*') is-invalid @enderror"
+                    accept="image/*"
+                    multiple>
 
-                            <i class="bi bi-trash"></i>
+                <small class="text-muted">
 
-                            Hapus Gambar
+                    Kamu bisa memilih beberapa gambar sekaligus.
 
-                        </button>
+                    <strong>
+                        Gambar baru akan ditambahkan ke galeri produk.
+                    </strong>
+
+                </small>
+
+            </div>
+
+
+            {{-- =========================
+                PREVIEW GAMBAR BARU
+            ========================= --}}
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-3">
+
+                        <i class="bi bi-eye text-primary me-2"></i>
+
+                        Preview Gambar Baru
+
+                    </h5>
+
+
+                    <div
+                        id="previewContainer"
+                        class="row g-3">
+
+                        <div
+                            id="emptyPreview"
+                            class="col-12 text-center py-4">
+
+                            <i class="bi bi-images display-3 text-secondary"></i>
+
+                            <p class="text-muted mt-3 mb-0">
+
+                                Belum ada gambar baru dipilih
+
+                            </p>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-                <div class="alert alert-warning mt-3">
+            </div>
+
+                <div class="alert alert-info mt-3">
 
                     <i class="bi bi-info-circle"></i>
 
-                    Jika memilih gambar baru,
-                    gambar lama akan otomatis diganti.
+                    Jika memilih gambar baru, gambar tersebut akan ditambahkan
+                    ke galeri produk yang sudah ada.
 
                 </div>
 
             <div class="d-flex justify-content-end gap-2 mt-4">
 
                 <button
+                    type="submit"
                     id="submitBtn"
                     class="btn btn-primary px-4">
 
@@ -313,73 +494,124 @@
 
         </form>
 
+        {{-- FORM KHUSUS AKSI GAMBAR --}}
+        <form
+            id="imageActionForm"
+            method="POST"
+            style="display:none;">
+
+            @csrf
+
+            <input
+                type="hidden"
+                name="_method"
+                id="imageMethod">
+
+        </form>
+
+    </div>
+
+</div>
+
 <script>
 
-    const input = document.getElementById('image');
-    const preview = document.getElementById('preview');
-    const text = document.getElementById('previewText');
-    const removeBtn = document.getElementById('removePreview');
+const input = document.getElementById('images');
 
-    const oldImage = preview.src;
-    const oldName = "{{ $product->image ? basename($product->image) : 'Belum ada gambar dipilih' }}";
+const previewContainer =
+    document.getElementById('previewContainer');
 
-    input.addEventListener('change', function(e){
 
-        const file = e.target.files[0];
+input.addEventListener('change', function () {
 
-        if(file){
+    previewContainer.innerHTML = '';
 
-            const reader = new FileReader();
 
-            reader.onload = function(event){
+    const files = Array.from(this.files);
 
-                preview.src = event.target.result;
 
-                preview.style.display = "block";
+    if (files.length === 0) {
 
-                document.getElementById("previewIcon").style.display = "none";
+        previewContainer.innerHTML = `
 
-                text.innerHTML = file.name;
+            <div class="col-12 text-center py-4">
 
-                removeBtn.classList.remove('d-none');
+                <i class="bi bi-images display-3 text-secondary"></i>
 
-            }
+                <p class="text-muted mt-3 mb-0">
 
-            reader.readAsDataURL(file);
+                    Belum ada gambar baru dipilih
 
-        }
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    files.forEach((file, index) => {
+
+        const reader = new FileReader();
+
+
+        reader.onload = function (event) {
+
+            const col = document.createElement('div');
+
+
+            col.className =
+                'col-6 col-md-4 col-lg-3';
+
+
+            col.innerHTML = `
+
+                <div class="card h-100 shadow-sm">
+
+                    <img
+                        src="${event.target.result}"
+                        class="card-img-top"
+                        style="height:160px; object-fit:cover;">
+
+
+                    <div class="card-body p-2 text-center">
+
+
+                        <span class="badge bg-success">
+
+                            Gambar Baru ${index + 1}
+
+                        </span>
+
+
+                        <div
+                            class="small text-truncate mt-2"
+                            title="${file.name}">
+
+                            ${file.name}
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            previewContainer.appendChild(col);
+
+        };
+
+
+        reader.readAsDataURL(file);
 
     });
 
-    removeBtn.addEventListener('click', function(){
-
-        input.value = "";
-
-        if(oldImage){
-
-            preview.src = oldImage;
-
-            preview.style.display = "block";
-
-            text.innerHTML = oldName;
-
-            document.getElementById("previewIcon").style.display="none";
-
-        }else{
-
-            preview.src = "";
-
-            preview.style.display = "none";
-
-            text.innerHTML = "Belum ada gambar dipilih";
-
-            document.getElementById("previewIcon").style.display="block";
-
-        }
-
-        removeBtn.classList.add('d-none');
-
-    });
+});
 
 </script>
 
@@ -400,4 +632,57 @@ document.getElementById('formSubmit').addEventListener('submit', function(){
 
 </script>
 
+<script>
+function setPrimaryImage(action) {
+
+    const form = document.getElementById('imageActionForm');
+
+    form.action = action;
+
+    document.getElementById('imageMethod').value = 'PATCH';
+
+    form.submit();
+
+}
+
+
+function deleteImage(action) {
+
+    Swal.fire({
+
+        title: 'Hapus Gambar?',
+
+        text: 'Gambar ini akan dihapus secara permanen dari produk.',
+
+        icon: 'warning',
+
+        showCancelButton: true,
+
+        confirmButtonColor: '#A9564B',
+
+        cancelButtonColor: '#6B5C4C',
+
+        confirmButtonText: 'Ya, Hapus',
+
+        cancelButtonText: 'Batal'
+
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            const form =
+                document.getElementById('imageActionForm');
+
+            form.action = action;
+
+            document.getElementById('imageMethod').value = 'DELETE';
+
+            form.submit();
+
+        }
+
+    });
+
+}
+</script>
 @endsection

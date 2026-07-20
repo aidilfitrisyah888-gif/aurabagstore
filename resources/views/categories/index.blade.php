@@ -35,25 +35,149 @@
 .aura-page-hero h1{ color:#fff; font-size:clamp(2rem,3.5vw,2.8rem); font-weight:700; margin-bottom:.5rem; }
 .aura-page-hero p{ color:#C7B8A3; margin:0; }
 
+/* =========================================================
+   CATEGORY CARD — BACKGROUND IMAGE
+   ========================================================= */
+
 .category-card{
-    background:#fff; border:none; border-top:3px solid var(--aura-brass); border-radius:18px;
-    height:100%; transition:transform .22s ease, box-shadow .22s ease; overflow:hidden; position:relative;
+
+    position:relative;
+
+    min-height:300px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(36,26,19,.08);
+
+    border-top:3px solid var(--aura-brass);
+
+    border-radius:18px;
+
+    background:var(--aura-espresso);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
 }
-.category-card:hover{ transform:translateY(-8px); box-shadow:0 26px 45px -22px rgba(36,26,19,.4); }
-.category-card::before{
-    content:""; position:absolute; right:-40px; top:-40px; width:130px; height:130px;
-    border-radius:50%; background:rgba(198,149,46,.07); pointer-events:none;
+
+
+/* Gambar kategori sebagai background */
+
+.category-card-bg{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:.38;
+
+    transition:
+        transform .5s ease,
+        opacity .3s ease;
+
 }
-.category-icon-wrap{
-    width:96px; height:96px; margin:0 auto 1.1rem; border-radius:50%;
-    background:linear-gradient(160deg, var(--aura-greige), #fff);
-    display:flex; align-items:center; justify-content:center; font-size:2.6rem;
-    box-shadow:inset 0 0 0 1px rgba(198,149,46,.25);
-    transition:transform .25s ease;
+
+
+/* Overlay agar teks tetap jelas */
+
+.category-card-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(34,24,18,.2),
+            rgba(34,24,18,.88)
+        );
+
 }
-.category-card:hover .category-icon-wrap{ transform:rotate(-8deg) scale(1.06); }
-.category-card h4{ font-size:1.25rem; margin-bottom:.35rem; }
-.category-card .category-desc{ color:var(--aura-ink-soft); font-size:.9rem; margin-bottom:1.25rem; }
+
+
+/* Isi kartu */
+
+.category-card-content{
+
+    position:relative;
+
+    z-index:2;
+
+    min-height:300px;
+
+    padding:2rem 1.25rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+}
+
+
+/* Hover card */
+
+.category-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 28px 50px -20px rgba(198,149,46,.45),
+        0 10px 25px -12px rgba(36,26,19,.3);
+
+}
+
+
+.category-card:hover .category-card-bg{
+
+    transform:scale(1.08);
+
+    opacity:.52;
+
+}
+
+
+/* Judul kategori */
+
+.category-card h4{
+
+    color:#fff;
+
+    font-size:1.35rem;
+
+    margin-bottom:.5rem;
+
+    text-shadow:0 2px 8px rgba(0,0,0,.7);
+
+}
+
+
+/* Jumlah produk */
+
+.category-card .category-desc{
+
+    color:#F4EEE4;
+
+    font-size:.9rem;
+
+    margin-bottom:1.25rem;
+
+    text-shadow:0 2px 6px rgba(0,0,0,.6);
+
+}
 
 .btn-aura-card{
     background:var(--aura-espresso); color:#F4EEE4; border:none; border-radius:999px; padding:.65rem 1.6rem;
@@ -83,11 +207,40 @@
 
                 <div class="card category-card">
 
-                    <div class="card-body text-center p-4 py-5">
+                    {{-- GAMBAR BACKGROUND KATEGORI --}}
 
-                        <div class="category-icon-wrap">
-                            👜
+                    @if($category->icon)
+
+                        <img
+                            src="{{ asset('storage/' . $category->icon) }}"
+                            alt="{{ $category->name }}"
+                            class="category-card-bg">
+
+                    @else
+
+                        <div
+                            class="category-card-bg"
+                            style="
+                                background:
+                                linear-gradient(
+                                    135deg,
+                                    var(--aura-espresso),
+                                    var(--aura-tan)
+                                );
+                            ">
                         </div>
+
+                    @endif
+
+
+                    {{-- OVERLAY --}}
+
+                    <div class="category-card-overlay"></div>
+
+
+                    {{-- ISI CARD --}}
+
+                    <div class="category-card-content">
 
                         <h4 class="fw-bold">
                             {{ $category->name }}
@@ -97,10 +250,16 @@
                             {{ $category->products_count }} Produk tersedia
                         </p>
 
-                        <a href="{{ route('products.index',['category'=>$category->id]) }}"
+                        <a
+                            href="{{ route('products.index',['category'=>$category->id]) }}"
                             class="btn-aura-card">
+
                             <i class="bi bi-bag"></i>
+
                             Lihat Produk
+
+                            <i class="bi bi-arrow-right"></i>
+
                         </a>
 
                     </div>

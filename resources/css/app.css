@@ -1042,6 +1042,83 @@ body .text-primary{ color:var(--aura-brass-dark) !important; }
 
 }
 
+/* =========================
+   PAGINATION ADMIN
+   AURA BAG STORE
+========================= */
+
+.pagination .page-link{
+
+    color: var(--aura-tan);
+
+    background: #fff;
+
+    border: 1px solid rgba(198,149,46,.35);
+
+    margin: 0 3px;
+
+    border-radius: 8px;
+
+    transition: all .2s ease;
+
+}
+
+
+/* Hover */
+
+.pagination .page-link:hover{
+
+    color: var(--aura-espresso);
+
+    background: var(--aura-greige);
+
+    border-color: var(--aura-brass);
+
+}
+
+
+/* Saat tombol ditekan / fokus */
+
+.pagination .page-link:focus{
+
+    color: var(--aura-espresso);
+
+    background: rgba(198,149,46,.12);
+
+    border-color: var(--aura-brass);
+
+    box-shadow: 0 0 0 .2rem rgba(198,149,46,.2);
+
+}
+
+
+/* Halaman aktif */
+
+.pagination .page-item.active .page-link{
+
+    color: var(--aura-espresso);
+
+    background: var(--aura-brass);
+
+    border-color: var(--aura-brass);
+
+    box-shadow: 0 6px 15px rgba(198,149,46,.3);
+
+}
+
+
+/* Tombol disabled */
+
+.pagination .page-item.disabled .page-link{
+
+    color: #B8AA9A;
+
+    background: var(--aura-ivory);
+
+    border-color: rgba(36,26,19,.1);
+
+}
+
 /* ===================================================
    MODAL
 =================================================== */

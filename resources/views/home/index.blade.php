@@ -159,25 +159,150 @@
 }
 .aura-section--ivory{ background:var(--aura-ivory); }
 
+/* ---- CATEGORY CARD DENGAN BACKGROUND IMAGE ---- */
+
 .category-card{
-    background:#fff; border:1px solid rgba(36,26,19,.06); border-top:3px solid var(--aura-brass);
-    border-radius:var(--aura-radius); transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+
+    position:relative;
+
+    min-height:220px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(36,26,19,.08);
+
+    border-top:3px solid var(--aura-brass);
+
+    border-radius:var(--aura-radius);
+
+    background:var(--aura-espresso);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+/* Gambar background kategori */
+
+.category-card-bg{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
     height:100%;
+
+    object-fit:cover;
+
+    opacity:.35;
+
+    transition:
+        transform .5s ease,
+        opacity .3s ease;
+
 }
+
+
+/* Lapisan gelap supaya teks tetap terbaca */
+
+.category-card-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+
+            to bottom,
+
+            rgba(34,24,18,.25),
+
+            rgba(34,24,18,.82)
+
+        );
+
+}
+
+
+/* Isi kartu berada di atas gambar */
+
+.category-card-content{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    padding:2rem 1rem;
+
+    text-align:center;
+
+}
+
+
+/* Hover */
+
 .category-card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 28px 50px -20px rgba(198,149,46,.4), 0 10px 25px -12px rgba(36,26,19,.25);
-    border-color:rgba(198,149,46,.35);
+
+    transform:translateY(-8px);
+
+    box-shadow:
+
+        0 28px 50px -20px rgba(198,149,46,.45),
+
+        0 10px 25px -12px rgba(36,26,19,.3);
+
 }
-.category-icon-wrap{
-    width:68px; height:68px; margin:0 auto .9rem; border-radius:50%;
-    background:linear-gradient(160deg,#fff,var(--aura-greige));
-    display:flex; align-items:center; justify-content:center; font-size:1.7rem;
-    box-shadow:inset 0 0 0 1px rgba(198,149,46,.3);
-    transition:transform .25s ease;
+
+
+.category-card:hover .category-card-bg{
+
+    transform:scale(1.08);
+
+    opacity:.48;
+
 }
-.category-card:hover .category-icon-wrap{ transform:rotate(-8deg) scale(1.08); }
-.category-card h5{ font-size:1.05rem; margin:.5rem 0 .4rem; color:var(--aura-ink); }
+
+
+/* Judul kategori */
+
+.category-card h5{
+
+    position:relative;
+
+    color:#fff;
+
+    font-size:1.25rem;
+
+    margin-bottom:.8rem;
+
+    text-shadow:0 2px 8px rgba(0,0,0,.65);
+
+}
+
+
+/* Jumlah produk */
+
+.category-card .hang-tag{
+
+    background:rgba(244,238,228,.9);
+
+    color:var(--aura-espresso);
+
+}
 
 .aura-empty{ padding:3.5rem 1rem; text-align:center; color:var(--aura-ink-soft); }
 .aura-empty i{ color:var(--aura-tan); opacity:.6; }
@@ -287,6 +412,40 @@
     .aura-hero-trust{ justify-content:center; }
     .stats-row{ margin-top:2rem; }
 }
+
+/* ---- Preview gambar produk ---- */
+
+.product-preview-image{
+    cursor:zoom-in;
+}
+
+.image-preview-modal{
+    background:var(--aura-espresso);
+    border:1px solid var(--aura-brass);
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.image-preview-modal .modal-header{
+    border-bottom:1px solid rgba(198,149,46,.3);
+}
+
+.image-preview-modal .modal-title{
+    color:#fff;
+}
+
+.image-preview-modal .btn-close{
+    filter:invert(1);
+}
+
+.preview-image-large{
+    max-height:75vh;
+    width:auto;
+    max-width:100%;
+    object-fit:contain;
+    border-radius:12px;
+}
+
 </style>
 
 <div class="aura-page">
@@ -380,27 +539,57 @@
 
                 <a href="{{ route('products.index',['category'=>$category->id]) }}" class="text-decoration-none">
 
-                    <div class="card category-card text-center p-4">
+                    <div class="card category-card">
+
+                        {{-- GAMBAR BACKGROUND KATEGORI --}}
 
                         @if($category->icon)
 
                             <img
                                 src="{{ asset('storage/' . $category->icon) }}"
                                 alt="{{ $category->name }}"
-                                class="mx-auto mb-3"
-                                style="width:70px; height:70px; object-fit:contain;">
+                                class="category-card-bg">
 
                         @else
 
-                            <div class="category-icon-wrap">👜</div>
+                            <div
+                                class="category-card-bg"
+                                style="
+                                    background:
+                                    linear-gradient(
+                                        135deg,
+                                        var(--aura-espresso-2),
+                                        var(--aura-tan)
+                                    );
+                                ">
+                            </div>
 
                         @endif
 
-                        <h5>{{ $category->name }}</h5>
 
-                        <span class="hang-tag hang-tag--brass">
-                            {{ $category->products_count }} Produk
-                        </span>
+                        {{-- OVERLAY TRANSPARAN --}}
+
+                        <div class="category-card-overlay"></div>
+
+
+                        {{-- ISI KARTU --}}
+
+                        <div class="category-card-content">
+
+                            <h5>
+
+                                {{ $category->name }}
+
+                            </h5>
+
+
+                            <span class="hang-tag">
+
+                                {{ $category->products_count }} Produk
+
+                            </span>
+
+                        </div>
 
                     </div>
 
@@ -456,7 +645,12 @@
 
                         <img
                             src="{{ asset('storage/'.$product->image) }}"
-                            alt="{{ $product->name }}">
+                            alt="{{ $product->name }}"
+                            class="product-preview-image"
+                            data-bs-toggle="modal"
+                            data-bs-target="#imagePreviewModal"
+                            data-image="{{ asset('storage/'.$product->image) }}"
+                            data-product="{{ $product->name }}">
 
                     </div>
 
@@ -479,7 +673,7 @@
                         </p>
 
                         <p class="product-desc">
-                            {{ \Illuminate\Support\Str::limit($product->description, 100) }}
+                            {{ \Illuminate\Support\Str::limit($product->short_description, 100) }}
                         </p>
 
                         <div class="mt-auto pt-3">
@@ -635,5 +829,76 @@
 </section>
 
 </div>
+
+{{-- Modal Preview Gambar --}}
+<div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+
+        <div class="modal-content image-preview-modal">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="imagePreviewTitle">
+                    Preview Produk
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <img
+                    id="previewImage"
+                    src=""
+                    alt="Preview Produk"
+                    class="img-fluid preview-image-large">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const previewImages =
+        document.querySelectorAll('.product-preview-image');
+
+    const previewImage =
+        document.getElementById('previewImage');
+
+    const previewTitle =
+        document.getElementById('imagePreviewTitle');
+
+    previewImages.forEach(function (image) {
+
+        image.addEventListener('click', function () {
+
+            previewImage.src =
+                this.dataset.image;
+
+            previewImage.alt =
+                this.dataset.product;
+
+            previewTitle.textContent =
+                this.dataset.product;
+
+        });
+
+    });
+
+});
+
+</script>
 
 @endsection

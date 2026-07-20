@@ -12,7 +12,12 @@ class Product extends Model
         'slug',
         'price',
         'stock',
+        'motif',
+        'bahan',
+        'ukuran',
         'description',
+        'short_description',
+        'long_description',
         'image',
         'shopee_link',
     ];
@@ -20,5 +25,11 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class)
+            ->orderBy('sort_order');
     }
 }

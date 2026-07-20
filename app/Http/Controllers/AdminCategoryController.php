@@ -33,10 +33,20 @@ class AdminCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|max:100|unique:categories,name',
-            'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
+        $request->validate(
+            [
+                'name' => 'required|max:100|unique:categories,name',
+                'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            ],
+            [
+                'name.required' => 'Nama kategori wajib diisi.',
+                'name.max' => 'Nama kategori maksimal :max karakter.',
+                'name.unique' => 'Nama kategori sudah digunakan.',
+                'icon.image' => 'Ikon harus berupa gambar.',
+                'icon.mimes' => 'Ikon harus berformat JPG, JPEG, PNG, atau WEBP.',
+                'icon.max' => 'Ukuran ikon maksimal 2 MB.',
+            ]
+        );
 
         $icon = null;
 
@@ -64,10 +74,20 @@ class AdminCategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|max:100|unique:categories,name,' . $category->id,
-            'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        ]);
+        $request->validate(
+            [
+                'name' => 'required|max:100|unique:categories,name,' . $category->id,
+                'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            ],
+            [
+                'name.required' => 'Nama kategori wajib diisi.',
+                'name.max' => 'Nama kategori maksimal :max karakter.',
+                'name.unique' => 'Nama kategori sudah digunakan.',
+                'icon.image' => 'Ikon harus berupa gambar.',
+                'icon.mimes' => 'Ikon harus berformat JPG, JPEG, PNG, atau WEBP.',
+                'icon.max' => 'Ukuran ikon maksimal 2 MB.',
+            ]
+        );
 
         $icon = $category->icon;
 

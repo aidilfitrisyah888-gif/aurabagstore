@@ -46,6 +46,16 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     Route::resource('products', AdminProductController::class);
 
+    Route::delete(
+        'products/images/{image}',
+        [AdminProductController::class, 'destroyImage']
+    )->name('products.images.destroy');
+
+    Route::patch(
+        'products/images/{image}/primary',
+        [AdminProductController::class, 'setPrimaryImage']
+    )->name('products.images.primary');
+
     Route::resource('users', AdminUserController::class);
 
 });

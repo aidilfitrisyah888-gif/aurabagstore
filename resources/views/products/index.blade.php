@@ -107,13 +107,124 @@
     transition:background .15s ease, gap .15s ease; width:100%;
 }
 .btn-aura-card:hover{ background:var(--aura-tan); color:#fff; gap:.7rem; }
+/* =========================================================
+   PAGINATION — AURA BAG STORE
+   ========================================================= */
 
-/* ---- Pagination ---- */
-.pagination .page-link{ border:none; color:var(--aura-brass); margin:0 3px; border-radius:8px; }
-.pagination .page-link:hover{ background:var(--aura-greige); color:var(--aura-espresso); }
-.pagination .page-item.active .page-link{ background:var(--aura-brass); color:var(--aura-espresso); }
+.pagination{
+    gap: 4px;
+}
 
+.pagination .page-link{
+
+    color: var(--aura-tan);
+
+    background: #fff;
+
+    border: 1px solid rgba(198,149,46,.35);
+
+    border-radius: 8px;
+
+    margin: 0 2px;
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+/* Hover */
+
+.pagination .page-link:hover{
+
+    color: var(--aura-espresso);
+
+    background: rgba(198,149,46,.12);
+
+    border-color: var(--aura-brass);
+
+}
+
+
+/* Halaman aktif */
+
+.pagination .page-item.active .page-link{
+
+    color: var(--aura-espresso);
+
+    background: var(--aura-brass);
+
+    border-color: var(--aura-brass);
+
+    box-shadow:
+        0 6px 15px rgba(198,149,46,.3);
+
+}
+
+
+/* Saat diklik / fokus */
+
+.pagination .page-link:focus{
+
+    color: var(--aura-espresso);
+
+    background: rgba(198,149,46,.12);
+
+    border-color: var(--aura-brass);
+
+    box-shadow:
+        0 0 0 .2rem rgba(198,149,46,.2);
+
+}
+
+
+/* Tombol disabled */
+
+.pagination .page-item.disabled .page-link{
+
+    color: #B8AA9A;
+
+    background: var(--aura-ivory);
+
+    border-color: rgba(36,26,19,.1);
+
+}
 .aura-empty i{ color:var(--aura-tan); opacity:.6; }
+/* ---- Preview gambar produk ---- */
+
+.product-preview-image{
+    cursor:zoom-in;
+}
+
+.image-preview-modal{
+    background:var(--aura-espresso);
+    border:1px solid var(--aura-brass);
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.image-preview-modal .modal-header{
+    border-bottom:1px solid rgba(198,149,46,.3);
+}
+
+.image-preview-modal .modal-title{
+    color:#fff;
+}
+
+.image-preview-modal .btn-close{
+    filter:invert(1);
+}
+
+.preview-image-large{
+    max-height:75vh;
+    width:auto;
+    max-width:100%;
+    object-fit:contain;
+    border-radius:12px;
+}
 </style>
 
 <div class="aura-page">
@@ -266,14 +377,24 @@
                                 <img
                                     src="{{ asset('storage/'.$product->image) }}"
                                     loading="lazy"
-                                    alt="{{ $product->name }}">
+                                    alt="{{ $product->name }}"
+                                    class="product-preview-image"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#imagePreviewModal"
+                                    data-image="{{ asset('storage/'.$product->image) }}"
+                                    data-product="{{ $product->name }}">
 
                                 @else
 
                                 <img
                                     src="https://placehold.co/600x400?text=No+Image"
                                     loading="lazy"
-                                    alt="No Image">
+                                    alt="No Image"
+                                    class="product-preview-image"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#imagePreviewModal"
+                                    data-image="https://placehold.co/600x400?text=No+Image"
+                                    data-product="No Image">
 
                                 @endif
 
@@ -318,7 +439,7 @@
                                 @endif
 
                                 <p class="product-description">
-                                    {{ Str::limit($product->description, 60) }}
+                                    {{ Str::limit($product->short_description, 60) }}
                                 </p>
 
                                 <div class="mt-auto pt-3">
@@ -373,5 +494,76 @@
     </div>
 
 </div>
+
+{{-- Modal Preview Gambar --}}
+<div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+
+        <div class="modal-content image-preview-modal">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="imagePreviewTitle">
+                    Preview Produk
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <img
+                    id="previewImage"
+                    src=""
+                    alt="Preview Produk"
+                    class="img-fluid preview-image-large">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const previewImages =
+        document.querySelectorAll('.product-preview-image');
+
+    const previewImage =
+        document.getElementById('previewImage');
+
+    const previewTitle =
+        document.getElementById('imagePreviewTitle');
+
+    previewImages.forEach(function (image) {
+
+        image.addEventListener('click', function () {
+
+            previewImage.src =
+                this.dataset.image;
+
+            previewImage.alt =
+                this.dataset.product;
+
+            previewTitle.textContent =
+                this.dataset.product;
+
+        });
+
+    });
+
+});
+
+</script>
 
 @endsection
