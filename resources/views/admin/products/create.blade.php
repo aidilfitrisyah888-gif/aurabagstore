@@ -352,6 +352,20 @@
 
             </div>
 
+            <div class="form-check mt-3">
+                <input
+                    type="checkbox"
+                    name="is_featured"
+                    value="1"
+                    class="form-check-input"
+                    id="is_featured"
+                >
+
+                <label class="form-check-label" for="is_featured">
+                    ⭐ Jadikan Produk Unggulan
+                </label>
+            </div>
+
             <div class="d-flex justify-content-end gap-2 mt-4">
 
             <button 

@@ -100,6 +100,8 @@ class AdminProductController extends Controller
 
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
 
+            'is_featured' => 'nullable|boolean',
+
         ]);
 
 
@@ -136,6 +138,8 @@ class AdminProductController extends Controller
             'shopee_link' => $request->shopee_link,
 
             'image' => 'temporary',
+
+            'is_featured' => $request->has('is_featured'),
 
         ]);
 
@@ -241,6 +245,8 @@ class AdminProductController extends Controller
 
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
 
+            'is_featured' => 'nullable|boolean',
+
         ]);
 
 
@@ -275,6 +281,8 @@ class AdminProductController extends Controller
             'description' => $request->long_description,
 
             'shopee_link' => $request->shopee_link,
+
+            'is_featured' => $request->has('is_featured'),
 
         ]);
 

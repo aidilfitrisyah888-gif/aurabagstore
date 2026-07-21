@@ -9,6 +9,9 @@
 
     <title>Aura Bag Store</title>
 
+    <link rel="icon" type="image/png"
+        href="{{ asset('assets/images/logo-tas.png') }}">
+
     @vite(['resources/css/app.css','resources/js/app.js'])
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -139,6 +142,66 @@
         color:#9C8B76;
         letter-spacing:.02em;
     }
+    .aura-footer .contact-row a{
+
+        color:#C7B8A3;
+
+        text-decoration:none;
+
+        transition:color .15s ease;
+
+    }
+
+    .aura-footer .contact-row a:hover{
+
+        color:var(--aura-brass-light);
+
+    }
+
+        .aura-brand{
+        display:flex;
+        align-items:center;
+        gap:.7rem;
+        text-decoration:none;
+    }
+
+    .aura-logo-icon{
+        width:44px;
+        height:44px;
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:linear-gradient(
+            135deg,
+            var(--aura-brass-light),
+            var(--aura-brass)
+        );
+        color:var(--aura-espresso);
+        font-size:1.35rem;
+        box-shadow:
+            0 5px 15px rgba(198,149,46,.3),
+            inset 0 1px 2px rgba(255,255,255,.35);
+    }
+
+    .aura-brand-text{
+        display:flex;
+        flex-direction:column;
+        line-height:1;
+    }
+
+    .aura-brand-text strong{
+        font-size:1.05rem;
+        letter-spacing:.08em;
+        color:#fff;
+    }
+
+    .aura-brand-text small{
+        margin-top:4px;
+        font-size:.58rem;
+        letter-spacing:.25em;
+        color:#C6952E;
+    }
     </style>
 
 </head>
@@ -149,14 +212,16 @@
 
     <div class="container">
 
-        <a class="navbar-brand" href="{{ route('home') }}">
+        <a href="{{ route('home') }}" class="navbar-brand aura-brand">
 
-            <img src="{{ asset('assets/images/logo.png') }}"
-                width="40"
-                class="me-2"
-                alt="Logo Aura Bag">
+            <div class="aura-logo-icon">
+                <i class="bi bi-handbag-fill"></i>
+            </div>
 
-            Aura Bag Store
+            <div class="aura-brand-text">
+                <strong>AURA BAG</strong>
+                <small>STORE</small>
+            </div>
 
         </a>
 
@@ -297,8 +362,18 @@
                 </h5>
 
                 <div class="contact-row">
+
                     <i class="bi bi-geo-alt-fill"></i>
-                    <span>Bandung, Indonesia</span>
+
+                    <a
+                        href="https://maps.app.goo.gl/wdfFW2yXARxdT8ru9"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        Bandung, Indonesia
+
+                    </a>
+
                 </div>
 
                 <div class="contact-row">

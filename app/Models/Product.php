@@ -20,6 +20,7 @@ class Product extends Model
         'long_description',
         'image',
         'shopee_link',
+        'is_featured',
     ];
 
     public function category()

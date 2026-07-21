@@ -15,6 +15,11 @@ class HomeController extends Controller
             ->take(9)
             ->get();
 
+        $featuredProducts = Product::where('is_featured', true)
+            ->latest()
+            ->take(4)
+            ->get();
+
         // Ambil semua kategori
         $categories = Category::withCount('products')->get();
 
@@ -26,7 +31,8 @@ class HomeController extends Controller
             'products',
             'categories',
             'totalProducts',
-            'totalCategories'
+            'totalCategories',
+            'featuredProducts'
         ));
     }
 }

@@ -77,9 +77,9 @@
                 {{-- Gambar Utama --}}
 
                 @php
-
-                    $mainImage = $product->images->first();
-
+                    $mainImage = $product->images
+                        ->sortBy('sort_order')
+                        ->first();
                 @endphp
 
 

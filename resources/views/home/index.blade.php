@@ -128,9 +128,206 @@
 .btn-aura-primary:focus-visible, .btn-aura-outline:focus-visible{ outline:2px solid var(--aura-brass-light); outline-offset:3px; }
 
 .aura-hero-frame{
-    position:relative; padding:1.1rem; border-radius:20px;
-    background:linear-gradient(160deg, rgba(198,149,46,.4), rgba(198,149,46,.05));
-    box-shadow:0 35px 65px -25px rgba(0,0,0,.55);
+    position:relative;
+    padding:1.1rem;
+    border-radius:20px;
+
+    /* Lebih clean, tidak ada kotak emas besar */
+    background:rgba(255,255,255,.025);
+
+    border:1px solid rgba(198,149,46,.45);
+
+    box-shadow:
+        0 35px 65px -25px rgba(0,0,0,.55),
+        0 0 35px rgba(198,149,46,.08);
+
+    min-height:480px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:center;
+
+    overflow:visible;
+}
+
+.featured-title{
+    text-align:center;
+    margin-bottom:1rem;
+}
+
+.featured-title span{
+    display:block;
+    color:var(--aura-brass-light);
+    font-family:'JetBrains Mono', monospace;
+    font-size:.7rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    margin-bottom:.25rem;
+}
+
+.featured-title h3{
+    color:#fff;
+    font-size:1.45rem;
+    margin:0;
+}
+
+.aura-hero-product{
+    display:none;
+    width:100%;
+    animation:heroProductFade .7s ease both;
+}
+
+.aura-hero-product.active{
+    display:block;
+}
+
+.aura-hero-product-image{
+    position:relative;
+    height:390px;
+    border-radius:14px;
+    overflow:hidden;
+    background:var(--aura-espresso-2);
+}
+
+.aura-hero-product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .5s ease;
+}
+
+.aura-hero-product:hover
+.aura-hero-product-image img{
+    transform:scale(1.05);
+}
+
+.aura-hero-product-info{
+    position:absolute;
+    inset:0;
+    z-index:3;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:2rem;
+
+    color:#fff;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(34,24,18,.15),
+        rgba(34,24,18,.65)
+    );
+}
+
+.aura-hero-product-info h4{
+    color:#fff;
+    font-size:clamp(1.3rem, 2vw, 2rem);
+    margin:.5rem 0;
+    text-shadow:0 2px 8px rgba(0,0,0,.7);
+}
+
+.aura-hero-product-price{
+    color:var(--aura-brass-light);
+    font-family:'JetBrains Mono', monospace;
+    font-size:1.25rem;
+    font-weight:600;
+    margin-bottom:1rem;
+    text-shadow:0 2px 8px rgba(0,0,0,.7);
+}
+
+.aura-hero-product-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:2;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.05),
+        rgba(0,0,0,.55)
+    );
+
+    pointer-events:none;
+}
+
+.hang-tag--brass{
+    background:rgba(244,238,228,.92);
+    color:var(--aura-tan);
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.btn-hero-product{
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    background:var(--aura-espresso);
+    color:#fff;
+    text-decoration:none;
+    padding:.55rem 1rem;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:600;
+    transition:.2s ease;
+}
+
+.btn-hero-product:hover{
+    background:var(--aura-tan);
+    color:#fff;
+    transform:translateX(3px);
+}
+
+.hero-slider-dots{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:.5rem;
+    margin-top:1.25rem;
+    width:100%;
+}
+
+.hero-slider-dot{
+    width:8px;
+    height:8px;
+    padding:0;
+    border:0;
+    border-radius:50%;
+    background:rgba(244,238,228,.4);
+    transition:.25s ease;
+    cursor:pointer;
+}
+
+.hero-slider-dot:hover{
+    background:var(--aura-brass-light);
+}
+
+.hero-slider-dot.active{
+    width:26px;
+    border-radius:999px;
+    background:var(--aura-brass);
+}
+
+.hero-slider-dot.active{
+    width:24px;
+    border-radius:999px;
+    background:var(--aura-brass);
+}
+
+@keyframes heroProductFade{
+    from{
+        opacity:0;
+        transform:translateX(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
 }
 .aura-hero-frame::before, .aura-hero-frame::after{
     content:""; position:absolute; width:26px; height:26px; border:2px solid var(--aura-brass); opacity:.75; z-index:2;
@@ -401,7 +598,129 @@
 .aura-cta-box > *{ position:relative; z-index:1; }
 .aura-cta-box h2{ color:#fff; font-size:clamp(1.6rem,3vw,2.15rem); margin-bottom:.75rem; }
 .aura-cta-box p{ color:#C7B8A3; max-width:32rem; margin:0 auto 1.75rem; }
+/* ---- Lokasi ---- */
 
+.aura-location{
+
+    background:var(--aura-greige);
+
+    padding:5rem 0;
+
+}
+
+.location-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1.25rem;
+
+    padding:2rem;
+
+    background:var(--aura-espresso);
+
+    border:1px solid rgba(198,149,46,.35);
+
+    border-radius:20px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    box-shadow:0 25px 45px -20px rgba(36,26,19,.35);
+
+    transition:
+
+        transform .25s ease,
+
+        box-shadow .25s ease,
+
+        border-color .25s ease;
+
+}
+
+.location-card:hover{
+
+    color:#fff;
+
+    transform:translateY(-6px);
+
+    border-color:var(--aura-brass);
+
+    box-shadow:0 30px 55px -20px rgba(198,149,46,.45);
+
+}
+
+.location-card-icon{
+
+    width:64px;
+
+    height:64px;
+
+    flex:0 0 auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(198,149,46,.15);
+
+    border:1px solid rgba(198,149,46,.4);
+
+    color:var(--aura-brass-light);
+
+    font-size:1.7rem;
+
+}
+
+.location-label{
+
+    display:block;
+
+    color:var(--aura-brass-light);
+
+    font-family:'JetBrains Mono', monospace;
+
+    font-size:.72rem;
+
+    letter-spacing:.1em;
+
+    text-transform:uppercase;
+
+    margin-bottom:.4rem;
+
+}
+
+.location-card h4{
+
+    color:#fff;
+
+    margin-bottom:.35rem;
+
+}
+
+.location-card p{
+
+    color:#C7B8A3;
+
+    margin:0;
+
+    font-size:.9rem;
+
+}
+
+.location-card p i{
+
+    color:var(--aura-brass-light);
+
+    margin-left:.25rem;
+
+}
 @media (max-width:991px){
     .aura-hero-badge{ position:static; margin-top:1.25rem; display:inline-flex; }
 }
@@ -501,15 +820,96 @@
             <div class="col-lg-6">
 
                 <div class="aura-hero-frame fade-in d2">
-                    <img src="{{ asset('assets/images/banner.png') }}" alt="Banner Aura Bag Store">
 
-                    <div class="aura-hero-badge">
-                        <span class="stars">★★★★★</span>
-                        <div>
-                            <strong>4.9 / 5.0</strong>
-                            <small>500+ pelanggan puas</small>
-                        </div>
+                    <div class="featured-title">
+                        <span>✦ PILIHAN TERBAIK AURA BAG</span>
+                        <h3>Produk Unggulan</h3>
                     </div>
+
+                    @foreach($featuredProducts as $index => $product)
+
+                        <div
+                            class="aura-hero-product {{ $index === 0 ? 'active' : '' }}"
+                            data-slide="{{ $index }}"
+                        >
+
+                            <div class="aura-hero-product-image">
+
+                                <img
+                                    src="{{ asset('storage/'.$product->image) }}"
+                                    alt="{{ $product->name }}"
+                                >
+
+                            </div>
+
+                            <div class="aura-hero-product-info">
+
+                                <span class="hang-tag hang-tag--brass mb-2">
+                                    {{ $product->category->name }}
+                                </span>
+
+                                <h4>
+                                    {{ $product->name }}
+                                </h4>
+
+                                <div class="aura-hero-product-price">
+                                    Rp {{ number_format($product->price, 0, ',', '.') }}
+                                </div>
+
+                                <a
+                                    href="{{ route('products.show', $product->slug) }}"
+                                    class="btn-hero-product"
+                                >
+
+                                    Lihat Detail
+                                    <i class="bi bi-arrow-right"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    @endforeach
+
+
+                    {{-- Rating Toko --}}
+                    <div class="aura-hero-badge">
+
+                        <span class="stars">★★★★★</span>
+
+                        <div>
+
+                            <strong>4.7 / 5.0</strong>
+
+                            <small>
+                                6 rb+ penilaian produk
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Titik Slider --}}
+                    @if($featuredProducts->count() > 1)
+
+                        <div class="hero-slider-dots">
+
+                            @foreach($featuredProducts as $index => $product)
+
+                                <button
+                                    class="hero-slider-dot {{ $index === 0 ? 'active' : '' }}"
+                                    data-slide="{{ $index }}"
+                                    aria-label="Produk {{ $index + 1 }}"
+                                ></button>
+
+                            @endforeach
+
+                        </div>
+
+                    @endif
+
                 </div>
 
             </div>
@@ -800,6 +1200,85 @@
 
 </section>
 
+{{-- Lokasi Toko --}}
+<section class="aura-location">
+
+    <div class="container">
+
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-5">
+
+                <span class="section-eyebrow">
+                    Kunjungi Kami
+                </span>
+
+                <h2 class="section-title mb-3">
+                    Temukan Lokasi Kami
+                </h2>
+
+                <p class="text-secondary">
+                    Ingin berkunjung atau mengetahui lokasi Aura Bag Store?
+                    Temukan kami melalui Google Maps.
+                </p>
+
+                <a
+                    href="https://maps.app.goo.gl/wdfFW2yXARxdT8ru9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-aura-primary mt-2">
+
+                    <i class="bi bi-geo-alt-fill"></i>
+
+                    Buka di Google Maps
+
+                    <i class="bi bi-arrow-up-right"></i>
+
+                </a>
+
+            </div>
+
+            <div class="col-lg-7">
+
+                <a
+                    href="https://maps.app.goo.gl/wdfFW2yXARxdT8ru9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="location-card">
+
+                    <div class="location-card-icon">
+
+                        <i class="bi bi-geo-alt-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span class="location-label">
+                            Lokasi Aura Bag Store
+                        </span>
+
+                        <h4>
+                            Bandung, Indonesia
+                        </h4>
+
+                        <p>
+                            Klik untuk melihat lokasi di Google Maps
+                            <i class="bi bi-arrow-up-right"></i>
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 {{-- CTA --}}
 <section class="aura-cta">
 
@@ -894,6 +1373,78 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.dataset.product;
 
         });
+
+    });
+
+});
+
+// ===============================
+// HERO PRODUCT SLIDER
+// ===============================
+
+const heroProducts =
+    document.querySelectorAll('.aura-hero-product');
+
+const heroDots =
+    document.querySelectorAll('.hero-slider-dot');
+
+let currentHeroSlide = 0;
+
+function showHeroSlide(index) {
+
+    heroProducts.forEach(function (product) {
+
+        product.classList.remove('active');
+
+    });
+
+    heroDots.forEach(function (dot) {
+
+        dot.classList.remove('active');
+
+    });
+
+    if (heroProducts[index]) {
+
+        heroProducts[index].classList.add('active');
+
+    }
+
+    if (heroDots[index]) {
+
+        heroDots[index].classList.add('active');
+
+    }
+
+    currentHeroSlide = index;
+
+}
+
+
+// Pergantian otomatis setiap 5 detik
+if (heroProducts.length > 1) {
+
+    setInterval(function () {
+
+        let nextSlide =
+            (currentHeroSlide + 1) % heroProducts.length;
+
+        showHeroSlide(nextSlide);
+
+    }, 5000);
+
+}
+
+
+// Klik titik slider
+heroDots.forEach(function (dot) {
+
+    dot.addEventListener('click', function () {
+
+        const slide =
+            parseInt(this.dataset.slide);
+
+        showHeroSlide(slide);
 
     });
 
