@@ -370,7 +370,7 @@
     <div class="container">
 
         <div class="text-center">
-            <span class="section-eyebrow">Belanja per kebutuhan</span>
+            <span class="section-eyebrow">Belanja sesuai kebutuhan</span>
             <h2 class="section-title">Kategori Tas</h2>
             <hr class="stitch-divider center">
         </div>
@@ -417,7 +417,7 @@
     <div class="container">
 
         <div class="text-center">
-            <span class="section-eyebrow">Baru sampai</span>
+            <span class="section-eyebrow">Jelajahi Produk Produk Kami</span>
             <h2 class="section-title">Produk Terbaru</h2>
             <hr class="stitch-divider center">
             <p class="text-secondary mb-5" style="margin-top:-1.5rem;">Menampilkan {{ $products->count() }} produk terbaru</p>
@@ -479,7 +479,6 @@
     <div class="container">
 
         <div class="text-center mb-5">
-            <span class="section-eyebrow" style="color:var(--aura-brass-light);">Kenapa Aura</span>
             <h2 class="fw-bold">Kenapa Memilih Aura Bag Store?</h2>
             <p style="color:#C7B8A3;">Kami menghadirkan tas berkualitas dengan desain modern dan pelayanan terbaik.</p>
         </div>

@@ -358,7 +358,7 @@
                             @endif
 
                             <div class="mt-auto pt-2">
-                                <a href="{{ route('products.show', $related->slug) }}" class="btn-aura-card">Lihat Detail</a>
+                                <a href="{{ route('products.show', $related->slug) }}" class="btn-aura-card"><i class="bi bi-eye"></i>Lihat Detail</a>
                             </div>
                         </div>
                     </div>
@@ -372,6 +372,21 @@
             @endforelse
         </div>
     </div>
+</div>
+
+{{-- ========================= TERAKHIR DILIHAT ========================= --}}
+
+<div id="recentlyViewedSection" class="container mb-5" style="display: none;">
+
+    <hr class="my-5">
+
+    <div class="text-center">
+        <h3 class="section-title">Terakhir Dilihat</h3>
+        <hr class="stitch-divider">
+    </div>
+
+    <div id="recentlyViewedProducts" class="row g-4"></div>
+
 </div>
 
 {{-- IMAGE PREVIEW MODAL --}}
@@ -398,21 +413,27 @@ document.addEventListener('DOMContentLoaded', function () {
         thumbnail.addEventListener('click', function () {
             const imageUrl = this.dataset.image;
 
-            // Ganti gambar utama
             mainImage.src = imageUrl;
             mainImage.dataset.image = imageUrl;
             mainImage.dataset.name = thumbnail.alt;
 
-            // Ganti thumbnail aktif
-            thumbnails.forEach(function (item) { item.classList.remove('active'); });
+            thumbnails.forEach(function (item) {
+                item.classList.remove('active');
+            });
+
             this.classList.add('active');
         });
     });
 
-    // Preview gambar utama
-    const previewTriggers = document.querySelectorAll('.product-preview-trigger, .related-preview-trigger');
+    const previewTriggers = document.querySelectorAll(
+        '.product-preview-trigger, .related-preview-trigger'
+    );
+
     const previewImage = document.getElementById('previewImage');
-    const previewModal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
+
+    const previewModal = new bootstrap.Modal(
+        document.getElementById('imagePreviewModal')
+    );
 
     previewTriggers.forEach(function (image) {
         image.addEventListener('click', function () {
@@ -422,5 +443,210 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+// =========================
+// TERAKHIR DILIHAT
+// =========================
+
+const currentProduct = {
+    id: @json($product->id),
+    name: @json($product->name),
+    slug: @json($product->slug),
+    price: @json($product->price),
+    stock: @json($product->stock),
+    category: @json($product->category->name),
+    image: @json(
+        $product->images->count()
+            ? asset('storage/' . $product->images->first()->image)
+            : 'https://placehold.co/600x400?text=No+Image'
+    ),
+    url: @json(route('products.show', $product->slug))
+};
+
+let recentlyViewed = JSON.parse(
+    localStorage.getItem('recentlyViewed')
+) || [];
+
+recentlyViewed = recentlyViewed.filter(function(product) {
+    return product.id !== currentProduct.id;
+});
+
+recentlyViewed.unshift(currentProduct);
+
+recentlyViewed = recentlyViewed.slice(0, 6);
+
+localStorage.setItem(
+    'recentlyViewed',
+    JSON.stringify(recentlyViewed)
+);
+
+
+function displayRecentlyViewed() {
+
+    const container = document.getElementById('recentlyViewedProducts');
+    const section = document.getElementById('recentlyViewedSection');
+
+    if (!container || !section) return;
+
+    let recentlyViewed = JSON.parse(
+        localStorage.getItem('recentlyViewed')
+    ) || [];
+
+    recentlyViewed = recentlyViewed.filter(function(product) {
+        return product.id !== currentProduct.id;
+    });
+
+    if (recentlyViewed.length === 0) {
+        section.style.display = 'none';
+        return;
+    }
+
+    section.style.display = 'block';
+
+    container.innerHTML = '';
+
+    recentlyViewed.forEach(function(product) {
+
+        let stockBadge = '';
+
+        if (product.stock > 10) {
+
+            stockBadge = `
+                <span
+                    class="hang-tag hang-tag--ok mb-2"
+                    style="align-self:flex-start;">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    Stok Banyak
+
+                </span>
+            `;
+
+        } else if (product.stock > 0) {
+
+            stockBadge = `
+                <span
+                    class="hang-tag hang-tag--warn mb-2"
+                    style="align-self:flex-start;">
+
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                    Stok Terbatas
+
+                </span>
+            `;
+
+        } else {
+
+            stockBadge = `
+                <span
+                    class="hang-tag hang-tag--danger mb-2"
+                    style="align-self:flex-start;">
+
+                    <i class="bi bi-x-circle-fill"></i>
+
+                    Stok Habis
+
+                </span>
+            `;
+
+        }
+
+
+        const productCard = `
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="card product-card h-100">
+
+                    <div class="product-image">
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                        >
+
+                    </div>
+
+
+                    <div class="card-body d-flex flex-column">
+
+                        {{-- KATEGORI --}}
+
+                        <span
+                            class="hang-tag hang-tag--brass mb-2"
+                            style="align-self:flex-start;">
+
+                            ${product.category}
+
+                        </span>
+
+
+                        {{-- NAMA PRODUK --}}
+
+                        <h5 class="fw-bold">
+
+                            ${product.name}
+
+                        </h5>
+
+
+                        {{-- HARGA --}}
+
+                        <h5 class="product-price-sm">
+
+                            Rp ${Number(product.price).toLocaleString('id-ID')}
+
+                        </h5>
+
+
+                        {{-- STOK --}}
+
+                        <p class="small text-secondary mb-2">
+
+                            Stok: ${product.stock}
+
+                        </p>
+
+
+                        {{-- BADGE STOK --}}
+
+                        ${stockBadge}
+
+
+                        {{-- BUTTON --}}
+
+                        <div class="mt-auto pt-2">
+
+                            <a
+                                href="${product.url}"
+                                class="btn-aura-card">
+
+                                <i class="bi bi-eye"></i>
+
+                                Lihat Detail
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.innerHTML += productCard;
+
+    });
+}
+
+displayRecentlyViewed();
+
 </script>
 @endsection
