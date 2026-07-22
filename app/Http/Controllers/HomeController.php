@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Ambil hanya 6 produk terbaru untuk homepage
+        // Ambil hanya 9 produk terbaru untuk homepage
         $products = Product::with('category')
             ->latest()
             ->take(9)

@@ -240,66 +240,47 @@
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-
                     <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
                         href="{{ route('home') }}">
-
+                        <i class="bi bi-house-door-fill"></i>
                         Home
-
                     </a>
-
                 </li>
 
                 <li class="nav-item">
-
                     <a class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}"
                         href="{{ route('products.index') }}">
-
+                        <i class="bi bi-bag-fill"></i>
                         Produk
-
                     </a>
-
                 </li>
 
                 <li class="nav-item">
-
                     <a class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}"
                         href="{{ route('categories.index') }}">
-
+                        <i class="bi bi-tags-fill"></i>
                         Kategori
-
                     </a>
-
                 </li>
 
                 <li class="nav-item">
-
                     <a
                         href="{{ route('cart.index') }}"
                         class="nav-link position-relative">
-
-                        <i class="bi bi-bag"></i>
-
+                        <i class="bi bi-cart3"></i>
                         Keranjang
-
                         @php
                             $cartCount = collect(session('cart', []))
                                 ->sum('quantity');
                         @endphp
 
                         @if($cartCount > 0)
-
                             <span
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-
                                 {{ $cartCount }}
-
                             </span>
-
                         @endif
-
                     </a>
-
                 </li>
 
             </ul>
