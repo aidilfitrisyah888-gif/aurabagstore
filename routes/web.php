@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\CartController;
 
 // ================= FRONTEND =================
 
@@ -59,5 +60,20 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('users', AdminUserController::class);
 
 });
+
+Route::get('/keranjang', [CartController::class, 'index'])
+    ->name('cart.index');
+
+Route::post('/keranjang/tambah/{product}', [CartController::class, 'add'])
+    ->name('cart.add');
+
+Route::put('/keranjang/update/{id}', [CartController::class, 'update'])
+    ->name('cart.update');
+
+Route::delete('/keranjang/hapus/{id}', [CartController::class, 'remove'])
+    ->name('cart.remove');
+
+Route::delete('/keranjang/kosongkan', [CartController::class, 'clear'])
+    ->name('cart.clear');
 
 require __DIR__.'/auth.php';

@@ -272,6 +272,36 @@
 
                 </li>
 
+                <li class="nav-item">
+
+                    <a
+                        href="{{ route('cart.index') }}"
+                        class="nav-link position-relative">
+
+                        <i class="bi bi-bag"></i>
+
+                        Keranjang
+
+                        @php
+                            $cartCount = collect(session('cart', []))
+                                ->sum('quantity');
+                        @endphp
+
+                        @if($cartCount > 0)
+
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+
+                                {{ $cartCount }}
+
+                            </span>
+
+                        @endif
+
+                    </a>
+
+                </li>
+
             </ul>
 
         </div>
