@@ -277,6 +277,49 @@
 .image-preview-modal .modal-title{ color:#fff; }
 .image-preview-modal .btn-close{ filter:invert(1); }
 .preview-image-large{ max-height:75vh; width:auto; max-width:100%; object-fit:contain; border-radius:12px; }
+
+/* =========================================
+   CUSTOMER REVIEWS / RATING SHOWCASE
+   ========================================= */
+
+.aura-reviews {
+    background: var(--aura-ivory);
+    padding: 5rem 0;
+}
+
+.review-card {
+    background: #fff;
+    border: 1px solid rgba(36,26,19,.08);
+    border-radius: 18px;
+    overflow: hidden;
+    height: 100%;
+    box-shadow: 0 18px 35px -20px rgba(36,26,19,.25);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 28px 50px -20px rgba(198,149,46,.4);
+}
+
+/* Screenshot rating */
+.review-image {
+    position: relative;
+    background: var(--aura-greige);
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.review-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform .4s ease;
+}
+
+.review-card:hover .review-image img {
+    transform: scale(1.04);
+}
 </style>
 
 <div class="aura-page">
@@ -480,30 +523,45 @@
 
         <div class="text-center mb-5">
             <h2 class="fw-bold">Kenapa Memilih Aura Bag Store?</h2>
-            <p style="color:#C7B8A3;">Kami menghadirkan tas berkualitas dengan desain modern dan pelayanan terbaik.</p>
+            <p style="color:#C7B8A3;">
+                Kami menghadirkan berbagai pilihan tas dengan harga terbaik dan pelayanan yang dapat diandalkan.
+            </p>
         </div>
 
         <div class="row g-0">
+
             <div class="col-md-3 aura-why-item">
                 <div class="feature-icon-circle">🚚</div>
                 <h5>Pengiriman Cepat</h5>
-                <p>Produk dikirim secepat mungkin ke seluruh Indonesia.</p>
+                <p>
+                    Pesanan dikemas dengan cepat dan dikirim ke berbagai wilayah Indonesia dengan aman.
+                </p>
             </div>
+
             <div class="col-md-3 aura-why-item">
-                <div class="feature-icon-circle">💎</div>
-                <h5>Kualitas Premium</h5>
-                <p>Menggunakan bahan pilihan yang kuat dan tahan lama.</p>
+                <div class="feature-icon-circle">👜</div>
+                <h5>Pilihan Beragam</h5>
+                <p>
+                    Temukan berbagai model, ukuran, dan jenis tas yang sesuai dengan kebutuhan dan gaya kamu.
+                </p>
             </div>
+
             <div class="col-md-3 aura-why-item">
-                <div class="feature-icon-circle">🛡</div>
-                <h5>Garansi Produk</h5>
-                <p>Produk rusak? Kami siap membantu proses penggantian.</p>
+                <div class="feature-icon-circle">💰</div>
+                <h5>Harga Terjangkau</h5>
+                <p>
+                    Dapatkan tas berkualitas dengan harga yang terjangkau dan sesuai untuk berbagai kebutuhan.
+                </p>
             </div>
+
             <div class="col-md-3 aura-why-item">
                 <div class="feature-icon-circle">💬</div>
                 <h5>Fast Response</h5>
-                <p>Tim kami siap menjawab pertanyaan pelanggan setiap hari.</p>
+                <p>
+                    Kami siap membantu menjawab pesan dan memberikan informasi produk dengan cepat.
+                </p>
             </div>
+
         </div>
 
     </div>
@@ -547,6 +605,91 @@
     </div>
 </section>
 
+<!-- Customer Reviews -->
+<section class="aura-reviews">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <span class="section-eyebrow">Pengalaman Pelanggan</span>
+
+            <h2 class="section-title">
+                Apa Kata Pelanggan Kami?
+            </h2>
+
+            <hr class="stitch-divider center">
+
+            <p class="text-secondary" style="margin-top:-1.5rem;">
+                Kepuasan pelanggan menjadi bagian dari setiap perjalanan Aura Bag Store.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            {{-- Review 1 --}}
+            <div class="col-lg-4 col-md-6">
+                <div class="review-card">
+                    <div class="review-image">
+                        <img src="{{ asset('storage/reviews/review-1.jpg') }}"
+                            alt="Rating pelanggan Aura Bag Store">
+                    </div>
+                </div>
+            </div>
+
+            {{-- Review 2 --}}
+            <div class="col-lg-4 col-md-6">
+                <div class="review-card">
+                    <div class="review-image">
+                        <img src="{{ asset('storage/reviews/review-2.jpg') }}"
+                            alt="Rating pelanggan Aura Bag Store">
+                    </div>
+                </div>
+            </div>
+
+            {{-- Review 3 --}}
+            <div class="col-lg-4 col-md-6">
+                <div class="review-card">
+                    <div class="review-image">
+                        <img src="{{ asset('storage/reviews/review-3.jpg') }}"
+                            alt="Rating pelanggan Aura Bag Store">
+                    </div>
+                </div>
+            </div>
+
+            {{-- Review 4 --}}
+            <div class="col-lg-4 col-md-6">
+                <div class="review-card">
+                    <div class="review-image">
+                        <img src="{{ asset('storage/reviews/review-4.jpg') }}"
+                            alt="Rating pelanggan Aura Bag Store">
+                    </div>
+                </div>
+            </div>
+
+            {{-- Review 5 --}}
+            <div class="col-lg-4 col-md-6">
+                <div class="review-card">
+                    <div class="review-image">
+                        <img src="{{ asset('storage/reviews/review-5.jpg') }}"
+                            alt="Rating pelanggan Aura Bag Store">
+                    </div>
+                </div>
+            </div>
+
+            {{-- Review 6 --}}
+            <div class="col-lg-4 col-md-6">
+                <div class="review-card">
+                    <div class="review-image">
+                        <img src="{{ asset('storage/reviews/review-6.jpg') }}"
+                            alt="Rating pelanggan Aura Bag Store">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
 {{-- Lokasi Toko --}}
 <section class="aura-location">
     <div class="container">
@@ -580,9 +723,8 @@
 <section class="aura-cta">
     <div class="container">
         <div class="aura-cta-box">
-            <span class="hang-tag hang-tag--solid mb-3" style="display:inline-flex;">Koleksi Lengkap</span>
-            <h2>Sudah Menemukan Tas yang Kamu Cari?</h2>
-            <p>Jelajahi koleksi lengkap Aura Bag Store dan temukan tas yang sesuai dengan kebutuhanmu.</p>
+            <h2>Sudah mendapatkan tas yang kamu cari? 🤔</h2>
+            <p>Jelajahi koleksi lengkap Aura Bag Store sekarang dan temukan tas impian yang berkualitas untuk menemani setiap aktivitasmu! ✨</p>
             <a href="{{ route('products.index') }}" class="btn-aura-primary px-4">
                 <i class="bi bi-bag"></i> Lihat Semua Produk <i class="bi bi-arrow-right"></i>
             </a>
