@@ -12,50 +12,49 @@
 =================================================== */
 
 :root{
-
-    --aura-espresso:      #221812;
-    --aura-espresso-2:    #2E2019;
-    --aura-espresso-3:    #3B291F;
-    --aura-brass:         #C6952E;
-    --aura-brass-light:   #E3B85C;
-    --aura-brass-dark:    #9C7420;
-    --aura-tan:           #9C6B45;
-    --aura-ivory:         #F6F1E8;
-    --aura-greige:        #EAE2D3;
-    --aura-ink:           #241A13;
-    --aura-ink-soft:      #6B5C4C;
+    --aura-espresso: #221812;
+    --aura-espresso-2: #2E2019;
+    --aura-espresso-3: #3B291F;
+    --aura-brass: #C6952E;
+    --aura-brass-light: #E3B85C;
+    --aura-brass-dark: #9C7420;
+    --aura-tan: #9C6B45;
+    --aura-ivory: #F6F1E8;
+    --aura-greige: #EAE2D3;
+    --aura-ink: #241A13;
+    --aura-ink-soft: #6B5C4C;
 
     /* aksen material untuk kartu statistik */
-    --aura-olive:         #6B7A4F;
-    --aura-olive-dark:    #4E5A38;
-    --aura-rose:          #A9564B;
-    --aura-rose-dark:     #7E3A32;
-    --aura-steel:         #576273;
-    --aura-steel-dark:    #3C4451;
+    --aura-olive: #6B7A4F;
+    --aura-olive-dark: #4E5A38;
+    --aura-rose: #A9564B;
+    --aura-rose-dark: #7E3A32;
+    --aura-steel: #576273;
+    --aura-steel-dark: #3C4451;
 
     /* ---- Override variabel Bootstrap bawaan supaya tidak ada biru tersisa ---- */
-    --bs-primary:                var(--aura-brass);
-    --bs-primary-rgb:            198,149,30;
-    --bs-link-color:             var(--aura-brass-dark);
-    --bs-link-color-rgb:         156,116,32;
-    --bs-link-hover-color:       var(--aura-espresso);
-    --bs-link-hover-color-rgb:   34,24,18;
-    --bs-focus-ring-color:       rgba(198,149,30,.35);
-    --bs-table-color:            var(--aura-ink);
-    --bs-table-bg:               transparent;
-    --bs-table-border-color:     #EFE7DA;
-    --bs-table-striped-color:    var(--aura-ink);
-    --bs-table-striped-bg:       #FBF6EC;
-    --bs-table-hover-color:      var(--aura-ink);
-    --bs-table-hover-bg:         #FAF5EA;
-    --bs-pagination-color:              var(--aura-brass-dark);
-    --bs-pagination-hover-color:        var(--aura-espresso);
-    --bs-pagination-hover-bg:           var(--aura-greige);
-    --bs-pagination-focus-color:        var(--aura-espresso);
-    --bs-pagination-focus-bg:           var(--aura-greige);
-    --bs-pagination-active-bg:          var(--aura-brass);
-    --bs-pagination-active-border-color:var(--aura-brass);
-    --bs-btn-focus-box-shadow:   0 0 0 .2rem rgba(198,149,30,.35);
+    --bs-primary: var(--aura-brass);
+    --bs-primary-rgb: 198,149,30;
+    --bs-link-color: var(--aura-brass-dark);
+    --bs-link-color-rgb: 156,116,32;
+    --bs-link-hover-color: var(--aura-espresso);
+    --bs-link-hover-color-rgb: 34,24,18;
+    --bs-focus-ring-color: rgba(198,149,30,.35);
+    --bs-table-color: var(--aura-ink);
+    --bs-table-bg: transparent;
+    --bs-table-border-color: #EFE7DA;
+    --bs-table-striped-color: var(--aura-ink);
+    --bs-table-striped-bg: #FBF6EC;
+    --bs-table-hover-color: var(--aura-ink);
+    --bs-table-hover-bg: #FAF5EA;
+    --bs-pagination-color: var(--aura-brass-dark);
+    --bs-pagination-hover-color: var(--aura-espresso);
+    --bs-pagination-hover-bg: var(--aura-greige);
+    --bs-pagination-focus-color: var(--aura-espresso);
+    --bs-pagination-focus-bg: var(--aura-greige);
+    --bs-pagination-active-bg: var(--aura-brass);
+    --bs-pagination-active-border-color: var(--aura-brass);
+    --bs-btn-focus-box-shadow: 0 0 0 .2rem rgba(198,149,30,.35);
 }
 
 /* Link umum & fokus tombol/form — jaring pengaman terakhir dari sisa biru Bootstrap */
@@ -82,26 +81,16 @@ a:hover{ color:var(--aura-espresso); }
     box-shadow:inset 4px 0 var(--aura-brass);
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{ margin:0; padding:0; box-sizing:border-box; }
 
 body{
-
     font-family:'Inter', sans-serif;
-
     background:
         radial-gradient(circle at 100% 0%, rgba(198,149,46,.10), transparent 40%),
         linear-gradient(165deg, #EFE6D4, #E9DFC9 55%, #EAE2D3);
-
     background-attachment:fixed;
-
     min-height:100vh;
-
     color:var(--aura-ink);
-
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -147,117 +136,67 @@ h1,h2,h3,h4,h5,h6{
    WRAPPER
 =================================================== */
 
-.admin-wrapper{
-
-    display:flex;
-
-    min-height:100vh;
-
-}
+.admin-wrapper{ display:flex; min-height:100vh; }
 
 /* ===================================================
    SIDEBAR
 =================================================== */
 
 .sidebar{
-
     width:260px;
-
     min-height:100vh;
-
     background:linear-gradient(180deg,var(--aura-espresso),var(--aura-espresso-3));
-
     color:#F4EEE4;
-
     position:fixed;
-
     left:0;
-
     top:0;
-
     bottom:0;
-
     padding:30px 20px;
-
     box-shadow:
         0 0 25px rgba(0,0,0,.35),
         0 20px 40px rgba(0,0,0,.25);
-
     z-index:999;
-
     overflow-y:auto;
-
     border-right:1px solid rgba(198,149,46,.25);
-
 }
 
-.sidebar-header{
-
-    margin-bottom:25px;
-
-}
+.sidebar-header{ margin-bottom:25px; }
 
 .sidebar-header h3,
 .sidebar-header h4{
-
     font-size:22px;
-
     font-weight:700;
-
     color:#fff;
-
 }
 
 .sidebar-header small{
-
     color:#C7B8A3;
-
     letter-spacing:.05em;
-
 }
 
 .sidebar hr{
-
     border-color:rgba(198,149,46,.2);
-
     margin:20px 0;
-
 }
 
 .sidebar .nav-link{
-
     display:flex;
-
     align-items:center;
-
     gap:14px;
-
     color:#D9CCBB;
-
     text-decoration:none;
-
     padding:13px 18px;
-
     border-radius:12px;
-
     margin-bottom:8px;
-
     transition:.25s;
-
     font-weight:500;
-
 }
 
 .sidebar .nav-link i{
-
     width:22px;
-
     font-size:17px;
-
     color:var(--aura-brass-light);
-
     transition:.25s;
-
 }
 
 .admin-wrapper .sidebar .nav-link:hover,
@@ -265,13 +204,9 @@ h1,h2,h3,h4,h5,h6{
 .admin-wrapper .sidebar .nav-link:focus-visible,
 body .sidebar .nav-link:hover,
 body .sidebar .nav-link:focus{
-
     background:rgba(198,149,46,.18) !important;
-
     color:#fff !important;
-
     transform:translateX(6px);
-
 }
 
 .admin-wrapper .sidebar .nav-link:hover i,
@@ -282,111 +217,58 @@ body .sidebar .nav-link:focus i{
 }
 
 .sidebar .nav-link.active{
-
     background:var(--aura-brass);
-
     color:var(--aura-espresso);
-
     font-weight:600;
-
     box-shadow:0 10px 25px rgba(198,149,46,.3);
-
 }
 
-.sidebar .nav-link.active i{
-
-    color:var(--aura-espresso);
-
-}
+.sidebar .nav-link.active i{ color:var(--aura-espresso); }
 
 /* ===================================================
    MAIN
 =================================================== */
 
-.main-content{
-
-    flex:1;
-
-    margin-left:260px;
-
-}
+.main-content{ flex:1; margin-left:260px; }
 
 /* ===================================================
    NAVBAR (top bar)
 =================================================== */
 
 .admin-navbar{
-
     height:80px;
-
     background:
         radial-gradient(circle at 92% 50%, rgba(198,149,46,.16), transparent 55%),
         linear-gradient(120deg, rgba(238,229,211,.95), rgba(224,213,188,.95));
-
     backdrop-filter:blur(18px);
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     padding:18px 30px;
-
     border-bottom:3px solid var(--aura-brass);
-
     box-shadow:0 10px 30px rgba(36,26,19,.08);
-
     position:sticky;
-
     top:0;
-
     z-index:1000;
-
 }
 
-.admin-navbar h4{
-
-    color:var(--aura-ink);
-
-    font-size:1.15rem;
-
-}
-
-.admin-navbar small{
-
-    color:var(--aura-ink-soft);
-
-}
-
-.admin-navbar form .btn{
-
-    border-radius:999px;
-
-}
+.admin-navbar h4{ color:var(--aura-ink); font-size:1.15rem; }
+.admin-navbar small{ color:var(--aura-ink-soft); }
+.admin-navbar form .btn{ border-radius:999px; }
 
 /* ===================================================
    CONTENT
 =================================================== */
 
 .admin-content{
-
     margin:30px;
-
     padding:30px;
-
     border-radius:22px;
-
     background:linear-gradient(180deg,#FFFFFF 0%, #FDFAF2 60%, #FBF6EA 100%);
-
     box-shadow:0 20px 40px rgba(36,26,19,.08);
-
     border-top:3px solid var(--aura-brass);
-
     position:relative;
-
     overflow: visible;
-
 }
 
 .admin-content::before{
@@ -399,10 +281,7 @@ body .sidebar .nav-link:focus i{
     z-index:0;
 }
 
-.admin-content > *{
-    position:relative;
-    z-index:1;
-}
+.admin-content > *{ position:relative; z-index:1; }
 
 .filter-card {
     overflow: visible !important;
@@ -414,32 +293,23 @@ body .sidebar .nav-link:focus i{
    CUSTOM SELECT — AURA THEME
 ================================ */
 
-.custom-select {
-    position: relative;
-    width: 100%;
-}
+.custom-select { position: relative; width: 100%; }
 
 .custom-select-trigger {
     height: 48px;
     padding: 0 16px;
-
     background: #fff;
     border: 1px solid #D8C7A5;
     border-radius: 10px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     cursor: pointer;
     color: var(--aura-ink);
-
     transition: .2s;
 }
 
-.custom-select-trigger:hover {
-    border-color: var(--aura-brass);
-}
+.custom-select-trigger:hover { border-color: var(--aura-brass); }
 
 .custom-select.open .custom-select-trigger {
     border-color: var(--aura-brass);
@@ -456,60 +326,36 @@ body .sidebar .nav-link:focus i{
     overflow: visible !important;
 }
 
-.custom-select {
-    position: relative;
-    z-index: 100;
-}
-
-.custom-select.open {
-    z-index: 9999;
-}
-
-.custom-options {
-    z-index: 99999 !important;
-}
+.custom-select { position: relative; z-index: 100; }
+.custom-select.open { z-index: 9999; }
+.custom-options { z-index: 99999 !important; }
 
 .custom-options {
     position: absolute;
-
     top: calc(100% + 5px);
     left: 0;
     width: 100%;
-
     background: #fff;
-
     border: 1px solid #D8C7A5;
     border-radius: 10px;
-
     overflow: hidden;
     z-index: 999;
-
     display: none;
-
     box-shadow: 0 10px 25px rgba(36, 26, 19, .15);
 }
 
-.custom-select.open .custom-options {
-    display: block;
-}
+.custom-select.open .custom-options { display: block; }
 
 .custom-option {
     padding: 12px 16px;
-
     cursor: pointer;
-
     color: var(--aura-ink);
-
     background: #fff;
-
     transition: .15s;
 }
 
 /* Saat kursor diarahkan ke opsi */
-.custom-option:hover {
-    background: var(--aura-greige) !important;
-    color: var(--aura-espresso) !important;
-}
+.custom-option:hover { background: var(--aura-greige) !important; color: var(--aura-espresso) !important; }
 
 /* Opsi yang sedang dipilih */
 .custom-option.selected {
@@ -519,57 +365,36 @@ body .sidebar .nav-link:focus i{
 }
 
 /* Kalau opsi yang dipilih sedang di-hover */
-.custom-option.selected:hover {
-    background: var(--aura-brass) !important;
-    color: var(--aura-espresso) !important;
-}
+.custom-option.selected:hover { background: var(--aura-brass) !important; color: var(--aura-espresso) !important; }
 
 /* ===================================================
    CARD
 =================================================== */
 
 .card{
-
     border:1px solid rgba(36,26,19,.06);
-
     border-radius:16px;
-
     background:linear-gradient(180deg,#ffffff, #FDFAF3);
-
     box-shadow:
     0 10px 25px rgba(36,26,19,.06),
     0 2px 8px rgba(198,149,46,.06);
-
     transition:.3s;
-
     overflow:visible;
-
     animation:fadeUp .45s ease;
-
 }
 
 .card:hover{
-
     transform:translateY(-4px);
-
     box-shadow:0 20px 40px rgba(36,26,19,.1);
-
     border-color:rgba(198,149,46,.25);
-
 }
 
 .card-header{
-
     background:var(--aura-greige);
-
     border-bottom:1px solid rgba(198,149,46,.2);
-
     font-weight:700;
-
     padding:16px 22px;
-
     color:var(--aura-ink);
-
 }
 
 /* ===================================================
@@ -577,7 +402,6 @@ body .sidebar .nav-link:focus i{
 =================================================== */
 
 .dashboard-card{
-
     border:none;
     border-radius:20px;
     overflow:visible;
@@ -585,26 +409,14 @@ body .sidebar .nav-link:focus i{
     box-shadow:0 15px 35px rgba(36,26,19,.08);
     transition:.35s;
     position:relative;
-
 }
 
 /* Dashboard Card Color — brass (produk) / olive (kategori) / steel (user) / rose (stok) */
 
-.card-product{
-    background:linear-gradient(135deg,#F3E3C1,#FBF4E5);
-}
-
-.card-category{
-    background:linear-gradient(135deg,#E4E9D8,#F4F6EE);
-}
-
-.card-user{
-    background:linear-gradient(135deg,#E2E6EC,#F3F5F8);
-}
-
-.card-stock{
-    background:linear-gradient(135deg,#F1DAD3,#FBF0EC);
-}
+.card-product{ background:linear-gradient(135deg,#F3E3C1,#FBF4E5); }
+.card-category{ background:linear-gradient(135deg,#E4E9D8,#F4F6EE); }
+.card-user{ background:linear-gradient(135deg,#E2E6EC,#F3F5F8); }
+.card-stock{ background:linear-gradient(135deg,#F1DAD3,#FBF0EC); }
 
 .dashboard-card:hover{
     transform:translateY(-8px);
@@ -612,35 +424,21 @@ body .sidebar .nav-link:focus i{
 }
 
 .dashboard-card::before{
-
     content:"";
-
     position:absolute;
-
     right:-30px;
-
     top:-30px;
-
     width:120px;
-
     height:120px;
-
     border-radius:50%;
-
     background:rgba(255,255,255,.35);
-
 }
 
 .dashboard-card h2{
-
     font-family:'JetBrains Mono', monospace;
-
     font-size:44px;
-
     font-weight:700;
-
     color:var(--aura-ink);
-
 }
 
 .card-product h2{ color:var(--aura-brass-dark); }
@@ -649,38 +447,23 @@ body .sidebar .nav-link:focus i{
 .card-stock h2{ color:var(--aura-rose-dark); }
 
 .dashboard-card p{
-
     color:var(--aura-ink-soft);
-
     margin-top:8px;
-
     font-size:.88rem;
     letter-spacing:.02em;
-
 }
 
 .icon-box{
-
     width:72px;
-
     height:72px;
-
     border-radius:50%;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     margin:auto;
-
     font-size:30px;
-
     transition:.3s;
-
     background:rgba(255,255,255,.55);
-
 }
 
 .card-product .icon-box{ color:var(--aura-brass-dark); }
@@ -688,72 +471,38 @@ body .sidebar .nav-link:focus i{
 .card-user .icon-box{ color:var(--aura-steel-dark); }
 .card-stock .icon-box{ color:var(--aura-rose-dark); }
 
-.dashboard-card:hover .icon-box{
-
-    transform:rotate(12deg) scale(1.1);
-
-}
+.dashboard-card:hover .icon-box{ transform:rotate(12deg) scale(1.1); }
 
 /* ===================================================
    TABLE
 =================================================== */
 
 .table{
-
     margin-bottom:0;
-
     border-radius:16px;
-
     overflow:visible;
-
     background:white;
-
     border-collapse:separate;
-
     border-spacing:0;
-
 }
 
-.table td{
-
-    vertical-align:middle;
-
-    padding:16px;
-
-}
-
-.table th{
-
-    padding:16px;
-
-}
+.table td{ vertical-align:middle; padding:16px; }
+.table th{ padding:16px; }
 
 .table thead{
-
     background:linear-gradient(90deg,var(--aura-espresso),var(--aura-espresso-3));
-
     color:#F4EEE4;
-
 }
 
 .table thead th{
-
     letter-spacing:.06em;
-
     text-transform:uppercase;
-
     font-size:12px;
-
     font-weight:600;
-
     color:var(--aura-brass-light);
-
     padding:15px;
-
     border:none;
-
     background:transparent !important;
-
 }
 
 .table-light thead,
@@ -762,13 +511,9 @@ body .sidebar .nav-link:focus i{
 }
 
 .table tbody td{
-
     padding:14px;
-
     vertical-align:middle;
-
     border-top:1px solid #EFE7DA;
-
 }
 
 .table thead th:first-child{ border-top-left-radius:12px; }
@@ -777,11 +522,8 @@ body .sidebar .nav-link:focus i{
 .table tbody tr{ transition:.2s; }
 
 .table tbody tr:hover{
-
     background:#FAF5EA;
-
     box-shadow:inset 4px 0 var(--aura-brass);
-
 }
 
 /* ===================================================
@@ -789,17 +531,11 @@ body .sidebar .nav-link:focus i{
 =================================================== */
 
 .table-responsive{
-
     background:linear-gradient(180deg,#ffffff,#FCF8EF);
-
     border-radius:16px;
-
     padding:12px;
-
     box-shadow:0 12px 30px rgba(36,26,19,.06);
-
     overflow-x: auto;
-
 }
 
 /* ===================================================
@@ -807,20 +543,12 @@ body .sidebar .nav-link:focus i{
 =================================================== */
 
 .img-thumbnail{
-
     border-radius:12px;
-
     border:1px solid #EFE7DA;
-
     transition:.3s;
-
 }
 
-.img-thumbnail:hover{
-
-    transform:scale(1.08);
-
-}
+.img-thumbnail:hover{ transform:scale(1.08); }
 
 .category-icon{ width:56px; height:56px; object-fit:cover; }
 .category-placeholder{ width:56px; height:56px; }
@@ -830,27 +558,17 @@ body .sidebar .nav-link:focus i{
 =================================================== */
 
 .btn{
-
     border-radius:10px;
-
     font-weight:600;
-
     transition:.2s;
-
     display:inline-flex;
-
     align-items:center;
-
     gap:8px;
-
 }
 
 .btn:hover{
-
     transform:translateY(-2px);
-
     box-shadow:0 10px 20px rgba(36,26,19,.12);
-
 }
 
 .admin-wrapper .btn-primary,
@@ -913,50 +631,32 @@ body .btn-danger:hover{ background:var(--aura-rose-dark) !important; }
 
 .form-control,
 .form-select{
-
     border-radius:10px;
-
     border:1px solid #E1D6C2;
-
     background:var(--aura-ivory);
-
     padding:11px 15px;
-
     transition:.2s;
-
     color:var(--aura-ink);
-
 }
 
 .form-control::placeholder{ color:var(--aura-ink-soft); opacity:.7; }
 
 .admin-wrapper .form-control:focus,
 .admin-wrapper .form-select:focus{
-
     border-color:var(--aura-brass) !important;
-
     box-shadow:0 0 0 .2rem rgba(198,149,46,.18) !important;
-
     background:#fff;
-
 }
 
 .form-control:hover{ border-color:var(--aura-brass); }
 
 form.row{
-
     border:1px solid rgba(36,26,19,.08);
-
     background:white;
-
     padding:18px;
-
     border-radius:16px;
-
     box-shadow:0 10px 25px rgba(36,26,19,.06);
-
     margin-bottom:25px;
-
 }
 
 /* ===================================================
@@ -964,17 +664,11 @@ form.row{
 =================================================== */
 
 .badge{
-
     padding:7px 13px;
-
     border-radius:30px;
-
     font-weight:600;
-
     font-size:12px;
-
     letter-spacing:.04em;
-
 }
 
 .admin-wrapper .bg-primary,
@@ -1008,220 +702,173 @@ body .text-primary{ color:var(--aura-brass-dark) !important; }
 }
 
 /* ===================================================
-   PAGINATION
+   PAGINATION — AURA BAG STORE
 =================================================== */
 
 .pagination{
-
-    margin-top:20px;
-
+    display:flex;
+    align-items:center;
     justify-content:center;
-
+    gap:8px;
+    margin-top:20px;
 }
 
-.page-link{
+/* Setiap item */
+.pagination .page-item{ margin:0; }
 
-    border:none;
-
-    margin:0 4px;
-
-    border-radius:8px;
-
-    color:var(--aura-brass-dark);
-
-}
-
-.page-link:hover{ background:var(--aura-greige); }
-
-.page-item.active .page-link,
-.active>.page-link{
-
-    background:var(--aura-brass);
-    border-color:var(--aura-brass);
-    color:var(--aura-espresso);
-
-}
-
-/* =========================
-   PAGINATION ADMIN
-   AURA BAG STORE
-========================= */
-
+/* Tombol pagination */
 .pagination .page-link{
-
-    color: var(--aura-tan);
-
-    background: #fff;
-
-    border: 1px solid rgba(198,149,46,.35);
-
-    margin: 0 3px;
-
-    border-radius: 8px;
-
-    transition: all .2s ease;
-
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--aura-ink-soft);
+    background:rgba(255,255,255,.75);
+    border:1px solid rgba(198,149,46,.25);
+    border-radius:50%;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.85rem;
+    font-weight:600;
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
 }
-
 
 /* Hover */
-
 .pagination .page-link:hover{
-
-    color: var(--aura-espresso);
-
-    background: var(--aura-greige);
-
-    border-color: var(--aura-brass);
-
+    color:var(--aura-espresso);
+    background:rgba(198,149,46,.12);
+    border-color:var(--aura-brass);
+    transform:translateY(-3px);
+    box-shadow:
+        0 8px 18px rgba(198,149,46,.18);
 }
-
-
-/* Saat tombol ditekan / fokus */
-
-.pagination .page-link:focus{
-
-    color: var(--aura-espresso);
-
-    background: rgba(198,149,46,.12);
-
-    border-color: var(--aura-brass);
-
-    box-shadow: 0 0 0 .2rem rgba(198,149,46,.2);
-
-}
-
 
 /* Halaman aktif */
-
-.pagination .page-item.active .page-link{
-
-    color: var(--aura-espresso);
-
-    background: var(--aura-brass);
-
-    border-color: var(--aura-brass);
-
-    box-shadow: 0 6px 15px rgba(198,149,46,.3);
-
+.pagination .page-item.active .page-link,
+.pagination .active > .page-link{
+    color:var(--aura-espresso);
+    background:var(--aura-brass);
+    border-color:var(--aura-brass);
+    box-shadow:
+        0 8px 20px rgba(198,149,46,.35);
+    transform:translateY(-2px);
 }
 
+/* Tombol sebelumnya dan berikutnya */
+.pagination .page-item:first-child .page-link,
+.pagination .page-item:last-child .page-link{
+    color:var(--aura-tan);
+    background:transparent;
+    border-color:rgba(198,149,46,.3);
+}
 
-/* Tombol disabled */
+/* Hover tombol arah */
+.pagination .page-item:first-child .page-link:hover,
+.pagination .page-item:last-child .page-link:hover{
+    color:var(--aura-espresso);
+    background:var(--aura-brass);
+    border-color:var(--aura-brass);
+}
 
+/* Disabled dan titik-titik */
 .pagination .page-item.disabled .page-link{
-
-    color: #B8AA9A;
-
-    background: var(--aura-ivory);
-
-    border-color: rgba(36,26,19,.1);
-
+    color:#B8AA9A;
+    background:transparent;
+    border-color:rgba(36,26,19,.1);
+    box-shadow:none;
+    transform:none;
+    cursor:default;
 }
+
+/* Fokus */
+.pagination .page-link:focus{
+    color:var(--aura-espresso);
+    background:rgba(198,149,46,.12);
+    border-color:var(--aura-brass);
+    box-shadow:0 0 0 .2rem rgba(198,149,46,.2);
+}
+
+/* Informasi pagination */
+.pagination-info{
+    color:var(--aura-ink-soft);
+    font-size:.88rem;
+    letter-spacing:.01em;
+}
+
+.pagination-info strong{ color:var(--aura-ink); font-weight:700; }
+
+/* Disabled */
+.pagination .page-item.disabled .page-link{
+    color: #B8AA9A;
+    background: var(--aura-ivory);
+    border-color: rgba(36,26,19,.08);
+    box-shadow: none;
+    transform: none;
+}
+
+/* Titik-titik (...) */
+.pagination .page-item.disabled .page-link{ cursor: default; }
 
 /* ===================================================
    MODAL
 =================================================== */
 
 .modal-content{
-
     border:none;
-
     border-radius:18px;
-
     overflow:visible;
-
     box-shadow:0 20px 50px rgba(0,0,0,.3);
-
 }
 
 .modal-header{
-
     background:var(--aura-espresso);
-
     color:#F4EEE4;
-
     border-bottom:1px solid rgba(198,149,46,.3);
-
 }
 
-.modal-header .btn-close{
-    filter:invert(1) grayscale(100%) brightness(2);
-}
+.modal-header .btn-close{ filter:invert(1) grayscale(100%) brightness(2); }
 
 /* ===================================================
    ANIMATION
 =================================================== */
 
 .card,
-.table-responsive{
-
-    animation:fadeUp .45s ease;
-
-}
+.table-responsive{ animation:fadeUp .45s ease; }
 
 @keyframes fadeUp{
-
     from{ opacity:0; transform:translateY(20px); }
-
     to{ opacity:1; transform:translateY(0); }
-
 }
 
-h2{
-
-    font-weight:700;
-
-    margin-bottom:22px;
-
-}
+h2{ font-weight:700; margin-bottom:22px; }
 
 ::-webkit-scrollbar{ width:10px; }
-
 ::-webkit-scrollbar-track{ background:var(--aura-greige); }
-
-::-webkit-scrollbar-thumb{
-
-    background:var(--aura-brass);
-
-    border-radius:20px;
-
-}
-
+::-webkit-scrollbar-thumb{ background:var(--aura-brass); border-radius:20px; }
 ::-webkit-scrollbar-thumb:hover{ background:var(--aura-brass-dark); }
 
 .card .btn{ min-width:170px; }
-
 .quick-action-card{ border-radius:20px; padding:15px; }
 
 .logo-circle{
-
     width:70px;
-
     height:70px;
-
     border-radius:50%;
-
     background:var(--aura-brass);
-
     color:var(--aura-espresso);
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     margin:auto;
-
     font-size:30px;
-
     font-weight:bold;
-
     box-shadow:0 10px 25px rgba(0,0,0,.3);
-
     transition:.35s;
-
 }
 
 .logo-circle:hover{ transform:rotate(12deg); }
@@ -1238,25 +885,16 @@ h2{
 ================================ */
 
 .btn-action{
-
     width:42px !important;
-
     height:42px !important;
-
     min-width:42px !important;
-
     padding:0 !important;
-
     display:inline-flex !important;
-
     justify-content:center;
-
     align-items:center;
-
 }
 
 .btn-action i{ font-size:15px; }
-
 .btn-action:hover{ transform:translateY(-2px) scale(1.05); }
 
 /* ===============================
@@ -1269,4 +907,3 @@ h2{
     color:var(--aura-ink);
     border-radius:12px;
 }
-

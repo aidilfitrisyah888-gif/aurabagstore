@@ -333,13 +333,14 @@
         <div class="row align-items-center g-5">
 
             <div class="col-lg-6">
-                <span class="hang-tag hang-tag--dark fade-in">Premium Collection</span>
+                <span class="hang-tag hang-tag--dark fade-in">TEMUKAN GAYA ANDA</span>
 
                 <h1 class="fade-in d1">Aura Bag <span class="grad-text">Store</span></h1>
 
                 <p class="lead fade-in d2">
-                    Temukan koleksi tas terbaik dengan kualitas premium,
-                    desain modern, dan harga terbaik — dibuat untuk menemani setiap langkahmu.
+                    Temani setiap langkahmu dengan tas berkualitas tinggi yang siap diandalkan
+                    dalam situasi apa pun. Mulai dari aktivitas harian hingga perjalanan jauh,
+                    semuanya ada di sini. Yuk pilih dan amankan tas favoritmu hari ini!
                 </p>
 
                 <div class="mt-4 d-flex gap-3 flex-wrap fade-in d3">
@@ -352,9 +353,9 @@
                 </div>
 
                 <div class="aura-hero-trust fade-in d4">
-                    <span><i class="bi bi-patch-check-fill"></i> 100% Original</span>
-                    <span><i class="bi bi-truck"></i> Pengiriman ke seluruh Indonesia</span>
-                    <span><i class="bi bi-shield-check"></i> Bergaransi</span>
+                    <span><i class="bi bi-bag-check-fill"></i> Koleksi Tas Pilihan</span>
+                    <span><i class="bi bi-tags-fill"></i> Harga Terjangkau</span>
+                    <span><i class="bi bi-truck"></i> Pengiriman ke Indonesia</span>
                 </div>
             </div>
 
@@ -413,8 +414,8 @@
     <div class="container">
 
         <div class="text-center">
-            <span class="section-eyebrow">Belanja sesuai kebutuhan</span>
-            <h2 class="section-title">Kategori Tas</h2>
+            <span class="section-eyebrow">PILIHAN UNTUK SETIAP AKTIVITAS</span>
+            <h2 class="section-title">Temukan Tas Favoritmu</h2>
             <hr class="stitch-divider center">
         </div>
 
@@ -460,10 +461,10 @@
     <div class="container">
 
         <div class="text-center">
-            <span class="section-eyebrow">Jelajahi Produk Produk Kami</span>
-            <h2 class="section-title">Produk Terbaru</h2>
+            <span class="section-eyebrow">Koleksi terbaru untukmu</span>
+            <h2 class="section-title">Pilihan Terbaru</h2>
             <hr class="stitch-divider center">
-            <p class="text-secondary mb-5" style="margin-top:-1.5rem;">Menampilkan {{ $products->count() }} produk terbaru</p>
+            <p class="text-secondary mb-5" style="margin-top:-1.5rem;">Temukan koleksi terbaru yang siap melengkapi gaya dan aktivitasmu.</p>
         </div>
 
         <div class="row">
@@ -522,9 +523,10 @@
     <div class="container">
 
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Kenapa Memilih Aura Bag Store?</h2>
+            <h2 class="fw-bold">Lebih dari Sekadar Tas</h2>
             <p style="color:#C7B8A3;">
-                Kami menghadirkan berbagai pilihan tas dengan harga terbaik dan pelayanan yang dapat diandalkan.
+                Kami menghadirkan pilihan tas untuk menemani kebutuhan,
+                gaya, dan aktivitasmu sehari-hari.
             </p>
         </div>
 
@@ -534,7 +536,7 @@
                 <div class="feature-icon-circle">🚚</div>
                 <h5>Pengiriman Cepat</h5>
                 <p>
-                    Pesanan dikemas dengan cepat dan dikirim ke berbagai wilayah Indonesia dengan aman.
+                    Pesanan diproses dengan cepat dan dikemas dengan aman sebelum dikirim ke tujuanmu.
                 </p>
             </div>
 
@@ -542,15 +544,15 @@
                 <div class="feature-icon-circle">👜</div>
                 <h5>Pilihan Beragam</h5>
                 <p>
-                    Temukan berbagai model, ukuran, dan jenis tas yang sesuai dengan kebutuhan dan gaya kamu.
+                    Dari kebutuhan sehari-hari hingga melengkapi gaya, temukan berbagai pilihan tas dalam satu tempat.
                 </p>
             </div>
 
             <div class="col-md-3 aura-why-item">
                 <div class="feature-icon-circle">💰</div>
-                <h5>Harga Terjangkau</h5>
+                <h5>Harga Bersahabat</h5>
                 <p>
-                    Dapatkan tas berkualitas dengan harga yang terjangkau dan sesuai untuk berbagai kebutuhan.
+                    Kami menghadirkan pilihan tas dengan harga yang sepadan dengan kualitas dan kebutuhanmu.
                 </p>
             </div>
 
@@ -558,7 +560,7 @@
                 <div class="feature-icon-circle">💬</div>
                 <h5>Fast Response</h5>
                 <p>
-                    Kami siap membantu menjawab pesan dan memberikan informasi produk dengan cepat.
+                    Masih ragu memilih? Kami siap membantu memberikan informasi agar kamu dapat menemukan pilihan yang tepat.
                 </p>
             </div>
 
@@ -572,32 +574,43 @@
     <div class="container">
         <div class="row text-center stats-row g-3">
 
-            <div class="col-6 col-md-3">
+           <div class="col-6 col-md-3">
                 <div class="stat-card">
-                    <div class="stat-icon"><i class="bi bi-bag-check-fill"></i></div>
+                    <div class="stat-icon">
+                        <i class="bi bi-bag-check-fill"></i>
+                    </div>
                     <h2>{{ $totalProducts }}+</h2>
                     <p>Produk</p>
                 </div>
             </div>
+
             <div class="col-6 col-md-3">
                 <div class="stat-card">
-                    <div class="stat-icon"><i class="bi bi-bookmark-star-fill"></i></div>
+                    <div class="stat-icon">
+                        <i class="bi bi-grid-fill"></i>
+                    </div>
                     <h2>{{ $totalCategories }}</h2>
                     <p>Kategori</p>
                 </div>
             </div>
+
             <div class="col-6 col-md-3">
                 <div class="stat-card">
-                    <div class="stat-icon"><i class="bi bi-patch-check-fill"></i></div>
-                    <h2>100%</h2>
-                    <p>Original</p>
+                    <div class="stat-icon">
+                        <i class="bi bi-cart-check-fill"></i>
+                    </div>
+                    <h2>10K+</h2>
+                    <p>Produk Terjual</p>
                 </div>
             </div>
+
             <div class="col-6 col-md-3">
                 <div class="stat-card">
-                    <div class="stat-icon"><i class="bi bi-headset"></i></div>
+                    <div class="stat-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
                     <h2>24/7</h2>
-                    <p>Customer Support</p>
+                    <p>Dukungan Pelanggan</p>
                 </div>
             </div>
 
@@ -613,13 +626,13 @@
             <span class="section-eyebrow">Pengalaman Pelanggan</span>
 
             <h2 class="section-title">
-                Apa Kata Pelanggan Kami?
+                Mereka Telah Memilih Aura Bag Store
             </h2>
 
             <hr class="stitch-divider center">
 
             <p class="text-secondary" style="margin-top:-1.5rem;">
-                Kepuasan pelanggan menjadi bagian dari setiap perjalanan Aura Bag Store.
+                Bukan hanya tentang apa yang kami jual, tetapi juga tentang pengalaman yang kami berikan.
             </p>
         </div>
 
@@ -698,7 +711,7 @@
             <div class="col-lg-5">
                 <span class="section-eyebrow">Kunjungi Kami</span>
                 <h2 class="section-title mb-3">Temukan Lokasi Kami</h2>
-                <p class="text-secondary">Ingin berkunjung atau mengetahui lokasi Aura Bag Store? Temukan kami melalui Google Maps.</p>
+                <p class="text-secondary">Ingin melihat lokasi kami atau berkunjung langsung? Temukan Aura Bag Store di Google Maps.</p>
                 <a href="https://maps.app.goo.gl/wdfFW2yXARxdT8ru9" target="_blank" rel="noopener noreferrer" class="btn-aura-primary mt-2">
                     <i class="bi bi-geo-alt-fill"></i> Buka di Google Maps <i class="bi bi-arrow-up-right"></i>
                 </a>
@@ -708,9 +721,9 @@
                 <a href="https://maps.app.goo.gl/wdfFW2yXARxdT8ru9" target="_blank" rel="noopener noreferrer" class="location-card">
                     <div class="location-card-icon"><i class="bi bi-geo-alt-fill"></i></div>
                     <div>
-                        <span class="location-label">Lokasi Aura Bag Store</span>
+                        <span class="location-label">Temukan Toko Kami</span>
                         <h4>Bandung, Indonesia</h4>
-                        <p>Klik untuk melihat lokasi di Google Maps <i class="bi bi-arrow-up-right"></i></p>
+                        <p>Lihat lokasi dan petunjuk arah di Google Maps <i class="bi bi-arrow-up-right"></i></p>
                     </div>
                 </a>
             </div>
@@ -723,10 +736,10 @@
 <section class="aura-cta">
     <div class="container">
         <div class="aura-cta-box">
-            <h2>Sudah mendapatkan tas yang kamu cari? 🤔</h2>
-            <p>Jelajahi koleksi lengkap Aura Bag Store sekarang dan temukan tas impian yang berkualitas untuk menemani setiap aktivitasmu! ✨</p>
+            <h2>Temukan Tas yang Tepat untukmu.</h2>
+            <p>Jelajahi koleksi Aura Bag Store dan temukan pilihan yang sesuai dengan gaya, kebutuhan, dan aktivitasmu.</p>
             <a href="{{ route('products.index') }}" class="btn-aura-primary px-4">
-                <i class="bi bi-bag"></i> Lihat Semua Produk <i class="bi bi-arrow-right"></i>
+                <i class="bi bi-bag"></i> Jelajahi Koleksi <i class="bi bi-arrow-right"></i>
             </a>
         </div>
     </div>

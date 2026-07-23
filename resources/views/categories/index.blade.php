@@ -29,11 +29,86 @@
 .hang-tag::before{ content:""; width:6px; height:6px; border-radius:50%; background:currentColor; opacity:.4; box-shadow:inset 0 0 0 1px currentColor; }
 
 .aura-page-hero{
-    background:radial-gradient(circle at 85% 20%, rgba(198,149,46,.16), transparent 45%), var(--aura-espresso);
-    color:#F4EEE4; padding:4rem 0 3rem; text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(198,149,46,.18),
+            transparent 45%
+        ),
+        var(--aura-espresso);
+
+    color:#F4EEE4;
+
+    padding:4rem 0 3rem;
+
+    text-align:center;
+
 }
-.aura-page-hero h1{ color:#fff; font-size:clamp(2rem,3.5vw,2.8rem); font-weight:700; margin-bottom:.5rem; }
-.aura-page-hero p{ color:#C7B8A3; margin:0; }
+
+
+/* Efek cahaya dekoratif */
+
+.aura-page-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    top:-150px;
+
+    left:-100px;
+
+    border-radius:50%;
+
+    background:rgba(198,149,46,.08);
+
+    filter:blur(30px);
+
+}
+
+
+/* Judul */
+
+.aura-page-hero h1{
+
+    position:relative;
+
+    color:#fff;
+
+    font-size:clamp(2rem,3.5vw,2.8rem);
+
+    font-weight:700;
+
+    margin-bottom:.55rem;
+
+    text-shadow:
+        0 4px 18px rgba(0,0,0,.25);
+
+}
+
+
+/* Deskripsi */
+
+.aura-page-hero p{
+
+    position:relative;
+
+    color:#C7B8A3;
+
+    margin:0;
+
+    font-size:.98rem;
+
+}
 
 /* =========================================================
    CATEGORY CARD — BACKGROUND IMAGE
@@ -190,12 +265,25 @@
 <div class="aura-page">
 
     <section class="aura-page-hero">
-        <div class="container">
-            <span class="hang-tag mb-3" style="background:rgba(255,255,255,.1); color:var(--aura-brass-light);">Jelajahi</span>
-            <h1>Semua Kategori</h1>
-            <p>Pilih kategori tas favoritmu.</p>
-        </div>
-    </section>
+
+    <div class="container">
+
+        <span
+            class="hang-tag mb-3"
+            style="
+                background:rgba(255,255,255,.1);
+                color:var(--aura-brass-light);
+            ">
+
+            Jelajahi
+
+        </span>
+
+        <h1>Temukan koleksi berdasarkan gaya dan kebutuhanmu.</h1>
+
+    </div>
+
+</section>
 
     <div class="container py-5">
 

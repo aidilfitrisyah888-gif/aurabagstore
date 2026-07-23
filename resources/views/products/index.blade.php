@@ -39,11 +39,86 @@
 
 /* ---- Page hero (band judul gelap) ---- */
 .aura-page-hero{
-    background:radial-gradient(circle at 85% 20%, rgba(198,149,46,.16), transparent 45%), var(--aura-espresso);
-    color:#F4EEE4; padding:3.5rem 0 2.75rem;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(198,149,46,.18),
+            transparent 45%
+        ),
+        var(--aura-espresso);
+
+    color:#F4EEE4;
+
+    padding:4rem 0 3rem;
+
+    text-align:center;
+
 }
-.aura-page-hero h1{ color:#fff; font-size:clamp(1.9rem,3.2vw,2.6rem); font-weight:700; margin-bottom:.4rem; }
-.aura-page-hero p{ color:#C7B8A3; margin-bottom:0; }
+
+
+/* Efek cahaya dekoratif */
+
+.aura-page-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    top:-150px;
+
+    left:-100px;
+
+    border-radius:50%;
+
+    background:rgba(198,149,46,.08);
+
+    filter:blur(30px);
+
+}
+
+
+/* Judul */
+
+.aura-page-hero h1{
+
+    position:relative;
+
+    color:#fff;
+
+    font-size:clamp(2rem,3.5vw,2.8rem);
+
+    font-weight:700;
+
+    margin-bottom:.55rem;
+
+    text-shadow:
+        0 4px 18px rgba(0,0,0,.25);
+
+}
+
+
+/* Deskripsi */
+
+.aura-page-hero p{
+
+    position:relative;
+
+    color:#C7B8A3;
+
+    margin:0;
+
+    font-size:.98rem;
+
+}
 
 /* ---- Search bar ---- */
 .aura-search .form-control{
@@ -107,91 +182,191 @@
     transition:background .15s ease, gap .15s ease; width:100%;
 }
 .btn-aura-card:hover{ background:var(--aura-tan); color:#fff; gap:.7rem; }
-/* =========================================================
+/* ===================================================
    PAGINATION — AURA BAG STORE
-   ========================================================= */
-
+=================================================== */
 .pagination{
-    gap: 4px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:20px;
+
 }
+
+/* Setiap item */
+
+.pagination .page-item{
+
+    margin:0;
+
+}
+
+/* Tombol pagination */
 
 .pagination .page-link{
 
-    color: var(--aura-tan);
+    width:42px;
 
-    background: #fff;
+    height:42px;
 
-    border: 1px solid rgba(198,149,46,.35);
+    display:flex;
 
-    border-radius: 8px;
+    align-items:center;
 
-    margin: 0 2px;
+    justify-content:center;
+
+    color:var(--aura-ink-soft);
+
+    background:rgba(255,255,255,.75);
+
+    border:1px solid rgba(198,149,46,.25);
+
+    border-radius:50%;
+
+    font-family:'JetBrains Mono', monospace;
+
+    font-size:.85rem;
+
+    font-weight:600;
 
     transition:
-        color .2s ease,
-        background .2s ease,
-        border-color .2s ease,
-        box-shadow .2s ease;
+
+        transform .25s ease,
+
+        background .25s ease,
+
+        color .25s ease,
+
+        border-color .25s ease,
+
+        box-shadow .25s ease;
 
 }
-
 
 /* Hover */
 
 .pagination .page-link:hover{
 
-    color: var(--aura-espresso);
+    color:var(--aura-espresso);
 
-    background: rgba(198,149,46,.12);
+    background:rgba(198,149,46,.12);
 
-    border-color: var(--aura-brass);
+    border-color:var(--aura-brass);
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 8px 18px rgba(198,149,46,.18);
 
 }
-
 
 /* Halaman aktif */
 
-.pagination .page-item.active .page-link{
+.pagination .page-item.active .page-link,
 
-    color: var(--aura-espresso);
+.pagination .active > .page-link{
 
-    background: var(--aura-brass);
+    color:var(--aura-espresso);
 
-    border-color: var(--aura-brass);
+    background:var(--aura-brass);
+
+    border-color:var(--aura-brass);
 
     box-shadow:
-        0 6px 15px rgba(198,149,46,.3);
+
+        0 8px 20px rgba(198,149,46,.35);
+
+    transform:translateY(-2px);
 
 }
 
+/* Tombol sebelumnya dan berikutnya */
 
-/* Saat diklik / fokus */
+.pagination .page-item:first-child .page-link,
 
-.pagination .page-link:focus{
+.pagination .page-item:last-child .page-link{
 
-    color: var(--aura-espresso);
+    color:var(--aura-tan);
 
-    background: rgba(198,149,46,.12);
+    background:transparent;
 
-    border-color: var(--aura-brass);
-
-    box-shadow:
-        0 0 0 .2rem rgba(198,149,46,.2);
+    border-color:rgba(198,149,46,.3);
 
 }
 
+/* Hover tombol arah */
 
-/* Tombol disabled */
+.pagination .page-item:first-child .page-link:hover,
+
+.pagination .page-item:last-child .page-link:hover{
+
+    color:var(--aura-espresso);
+
+    background:var(--aura-brass);
+
+    border-color:var(--aura-brass);
+
+}
+
+/* Disabled dan titik-titik */
 
 .pagination .page-item.disabled .page-link{
 
-    color: #B8AA9A;
+    color:#B8AA9A;
 
-    background: var(--aura-ivory);
+    background:transparent;
 
-    border-color: rgba(36,26,19,.1);
+    border-color:rgba(36,26,19,.1);
+
+    box-shadow:none;
+
+    transform:none;
+
+    cursor:default;
 
 }
+
+/* Fokus */
+
+.pagination .page-link:focus{
+
+    color:var(--aura-espresso);
+
+    background:rgba(198,149,46,.12);
+
+    border-color:var(--aura-brass);
+
+    box-shadow:0 0 0 .2rem rgba(198,149,46,.2);
+
+}
+
+/* Informasi pagination */
+
+.pagination-info{
+
+    color:var(--aura-ink-soft);
+
+    font-size:.88rem;
+
+    letter-spacing:.01em;
+
+}
+
+.pagination-info strong{
+
+    color:var(--aura-ink);
+
+    font-weight:700;
+
+}
+
 .aura-empty i{ color:var(--aura-tan); opacity:.6; }
 /* ---- Preview gambar produk ---- */
 
@@ -228,11 +403,17 @@
 </style>
 
 <div class="aura-page">
-
     <section class="aura-page-hero">
         <div class="container">
-            <h1>Semua Produk</h1>
-            <p>Menampilkan {{ $products->total() }} produk pilihan untukmu</p>
+            <span
+                class="hang-tag mb-3"
+                style="
+                    background:rgba(255,255,255,.1);
+                    color:var(--aura-brass-light);
+                ">
+                Koleksi Aura
+            </span>
+            <h1>Jelajahi {{ $products->total() }} pilihan tas untuk melengkapi gayamu.</h1>
         </div>
     </section>
 
@@ -483,7 +664,7 @@
 
                 <div class="mt-4 d-flex justify-content-center">
 
-                    {{ $products->links() }}
+                    {{ $products->links('vendor.pagination.bootstrap-5') }}
 
                 </div>
 
