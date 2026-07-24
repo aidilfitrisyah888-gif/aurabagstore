@@ -76,4 +76,8 @@ Route::delete('/keranjang/hapus/{id}', [CartController::class, 'remove'])
 Route::delete('/keranjang/kosongkan', [CartController::class, 'clear'])
     ->name('cart.clear');
 
+Route::get('/panduan', function () {
+    return view('pages.guide');
+})->name('guide');
+
 require __DIR__.'/auth.php';

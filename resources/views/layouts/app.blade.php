@@ -96,65 +96,389 @@
         background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(230, 197, 129, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
-    /* ---- Footer ---- */
+  /* =========================================================
+    FOOTER — AURA BAG STORE
+    ========================================================= */
+
     .aura-footer{
-        background:var(--aura-espresso-2);
+        position:relative;
+        overflow:hidden;
+
+        background:
+            radial-gradient(
+                circle at 85% 15%,
+                rgba(198,149,46,.12),
+                transparent 32%
+            ),
+            linear-gradient(
+                135deg,
+                var(--aura-espresso-2),
+                var(--aura-espresso)
+            );
+
         color:#C7B8A3;
-        padding:3.5rem 0 1.75rem;
+        padding:5rem 0 1.5rem;
         margin-top:0;
     }
-    .aura-footer h3{ color:#F4EEE4; font-size:1.35rem; margin-bottom:.75rem; }
-    .aura-footer h5{
-        color:var(--aura-brass-light);
-        font-family:'JetBrains Mono', monospace;
-        font-size:.78rem;
-        font-weight:600;
-        letter-spacing:.1em;
-        text-transform:uppercase;
-        margin-bottom:1rem;
+
+    /* Ornamen cahaya */
+
+    .aura-footer::before{
+        content:"";
+        position:absolute;
+
+        width:360px;
+        height:360px;
+
+        right:-150px;
+        bottom:-180px;
+
+        border-radius:50%;
+
+        background:radial-gradient(
+            circle,
+            rgba(198,149,46,.12),
+            transparent 70%
+        );
+
+        pointer-events:none;
     }
-    .aura-footer p{ color:#C7B8A3; font-size:.92rem; line-height:1.65; }
-    .aura-footer ul{ list-style:none; padding:0; margin:0; }
-    .aura-footer ul li{ margin-bottom:.6rem; }
-    .aura-footer ul li a{
-        color:#C7B8A3;
+
+    /* Garis dekoratif atas */
+
+    .aura-footer::after{
+        content:"";
+
+        position:absolute;
+        top:0;
+        left:0;
+
+        width:100%;
+        height:3px;
+
+        background:
+            linear-gradient(
+                90deg,
+                transparent,
+                var(--aura-brass),
+                var(--aura-brass-light),
+                var(--aura-brass),
+                transparent
+            );
+
+        opacity:.8;
+    }
+
+
+    /* Brand */
+
+    .footer-brand{
+        display:inline-flex;
+        align-items:center;
+        gap:.7rem;
+
+        margin-bottom:1.25rem;
+
         text-decoration:none;
-        font-size:.92rem;
-        transition:color .15s ease, padding-left .15s ease;
     }
-    .aura-footer ul li a:hover{ color:var(--aura-brass-light); padding-left:.25rem; }
-    .aura-footer .contact-row{
+
+    .footer-brand-icon{
+        width:48px;
+        height:48px;
+
         display:flex;
         align-items:center;
-        gap:.6rem;
-        margin-bottom:.75rem;
-        font-size:.92rem;
+        justify-content:center;
+
+        border-radius:50%;
+
+        color:var(--aura-espresso);
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--aura-brass-light),
+                var(--aura-brass)
+            );
+
+        font-size:1.4rem;
+
+        box-shadow:
+            0 8px 20px rgba(198,149,46,.25),
+            inset 0 1px 2px rgba(255,255,255,.4);
     }
-    .aura-footer .contact-row i{ color:var(--aura-brass); font-size:1rem; }
-    .aura-footer-divider{
-        border:none;
-        border-top:1px dashed rgba(198,149,46,.3);
-        margin:2.25rem 0 1.5rem;
+
+    .footer-brand-text{
+        display:flex;
+        flex-direction:column;
+
+        line-height:1;
     }
-    .aura-footer-bottom{
-        text-align:center;
-        font-size:.82rem;
-        color:#9C8B76;
-        letter-spacing:.02em;
+
+    .footer-brand-text strong{
+        color:#fff;
+
+        font-family:'Fraunces', serif;
+        font-size:1.3rem;
     }
-    .aura-footer .contact-row a{
+
+    .footer-brand-text small{
+        margin-top:5px;
+
+        color:var(--aura-brass-light);
+
+        font-family:'JetBrains Mono', monospace;
+        font-size:.58rem;
+        letter-spacing:.25em;
+    }
+
+
+    /* Deskripsi */
+
+    .aura-footer p{
+        color:#C7B8A3;
+        font-size:.9rem;
+        line-height:1.75;
+    }
+
+
+    /* Judul kolom */
+
+    .aura-footer h5{
+        position:relative;
+
+        color:var(--aura-brass-light);
+
+        font-family:'JetBrains Mono', monospace;
+        font-size:.75rem;
+        font-weight:600;
+
+        letter-spacing:.12em;
+        text-transform:uppercase;
+
+        margin-bottom:1.25rem;
+    }
+
+
+    /* Garis kecil bawah judul */
+
+    .aura-footer h5::after{
+        content:"";
+
+        display:block;
+
+        width:28px;
+        height:2px;
+
+        margin-top:.55rem;
+
+        background:var(--aura-brass);
+    }
+
+
+    /* Link */
+
+    .aura-footer ul{
+        list-style:none;
+        padding:0;
+        margin:0;
+    }
+
+    .aura-footer ul li{
+        margin-bottom:.7rem;
+    }
+
+    .aura-footer ul li a{
+        display:inline-flex;
+        align-items:center;
+        gap:.45rem;
 
         color:#C7B8A3;
 
         text-decoration:none;
+        font-size:.9rem;
 
-        transition:color .15s ease;
+        transition:
+            color .2s ease,
+            transform .2s ease;
+    }
 
+    .aura-footer ul li a:hover{
+        color:var(--aura-brass-light);
+        transform:translateX(4px);
+    }
+
+
+    /* Kontak */
+
+    .aura-footer .contact-row{
+        display:flex;
+        align-items:flex-start;
+        gap:.7rem;
+
+        margin-bottom:.9rem;
+
+        color:#C7B8A3;
+        font-size:.9rem;
+        line-height:1.5;
+    }
+
+    .aura-footer .contact-row i{
+        flex:0 0 auto;
+
+        margin-top:.15rem;
+
+        color:var(--aura-brass);
+        font-size:1rem;
+    }
+
+    .aura-footer .contact-row a{
+        color:#C7B8A3;
+
+        text-decoration:none;
+
+        transition:color .2s ease;
     }
 
     .aura-footer .contact-row a:hover{
-
         color:var(--aura-brass-light);
+    }
+
+
+    /* Social media */
+
+    .footer-social{
+        display:flex;
+        gap:.65rem;
+
+        margin-top:1.4rem;
+    }
+
+    .footer-social a{
+        width:38px;
+        height:38px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        border-radius:50%;
+
+        color:#C7B8A3;
+
+        border:1px solid rgba(198,149,46,.35);
+
+        text-decoration:none;
+
+        transition:
+            transform .2s ease,
+            color .2s ease,
+            background .2s ease,
+            border-color .2s ease;
+    }
+
+    .footer-social a:hover{
+        color:var(--aura-espresso);
+
+        background:var(--aura-brass);
+
+        border-color:var(--aura-brass);
+
+        transform:translateY(-4px);
+    }
+
+
+    /* Trust badge */
+
+    .footer-trust{
+        display:flex;
+        flex-wrap:wrap;
+        gap:.6rem;
+
+        margin-top:1.5rem;
+    }
+
+    .footer-trust span{
+        display:inline-flex;
+        align-items:center;
+        gap:.4rem;
+
+        padding:.4rem .7rem;
+
+        border-radius:999px;
+
+        background:rgba(255,255,255,.045);
+
+        border:1px solid rgba(198,149,46,.2);
+
+        color:#C7B8A3;
+
+        font-size:.72rem;
+    }
+
+    .footer-trust i{
+        color:var(--aura-brass-light);
+    }
+
+
+    /* Divider */
+
+    .aura-footer-divider{
+        border:none;
+
+        border-top:1px dashed rgba(198,149,46,.3);
+
+        margin:3rem 0 1.5rem;
+    }
+
+
+    /* Footer bottom */
+
+    .aura-footer-bottom{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:1rem;
+
+        color:#9C8B76;
+
+        font-size:.8rem;
+        letter-spacing:.02em;
+    }
+
+    .footer-bottom-links{
+        display:flex;
+        gap:1.25rem;
+    }
+
+    .footer-bottom-links a{
+        color:#9C8B76;
+
+        text-decoration:none;
+
+        transition:color .2s ease;
+    }
+
+    .footer-bottom-links a:hover{
+        color:var(--aura-brass-light);
+    }
+
+
+    @media(max-width:767px){
+
+        .aura-footer{
+            padding-top:4rem;
+        }
+
+        .aura-footer-bottom{
+            flex-direction:column;
+            text-align:center;
+        }
+
+        .footer-bottom-links{
+            justify-content:center;
+            flex-wrap:wrap;
+        }
 
     }
 
@@ -303,74 +627,126 @@
 
     <div class="container">
 
-        <div class="row">
+        <div class="row g-5">
 
-            {{-- Tentang --}}
-            <div class="col-lg-4 mb-4">
+            {{-- BRAND --}}
+            <div class="col-lg-5 col-md-6">
 
-                <h3>
+                <a href="{{ route('home') }}" class="footer-brand">
 
-                    Aura Bag Store
+                    <div class="footer-brand-icon">
+                        <i class="bi bi-handbag-fill"></i>
+                    </div>
 
-                </h3>
+                    <div class="footer-brand-text">
+                        <strong>AURA BAG</strong>
+                        <small>STORE</small>
+                    </div>
+
+                </a>
 
                 <p>
-
-                    Menyediakan berbagai tas berkualitas
-                    dengan harga terbaik untuk kebutuhan
-                    sekolah, kerja, maupun traveling.
-
+                    Temukan tas yang sesuai dengan gaya,
+                    kebutuhan, dan aktivitasmu di Aura Bag Store.
+                    Kami menghadirkan pilihan tas berkualitas
+                    dengan harga yang bersahabat.
                 </p>
+
+                <div class="footer-trust">
+
+                    <span>
+                        <i class="bi bi-shield-check"></i>
+                        Pilihan Berkualitas
+                    </span>
+
+                    <span>
+                        <i class="bi bi-bag-check"></i>
+                        Belanja Nyaman
+                    </span>
+
+                </div>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="#" aria-label="TikTok">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+
+                    <a href="#" aria-label="WhatsApp">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+
+                </div>
 
             </div>
 
-            {{-- Menu --}}
-            <div class="col-lg-4 mb-4">
 
-                <h5>
+            {{-- NAVIGASI TOKO --}}
+            <div class="col-lg-3 col-md-6">
 
-                    Menu
-
-                </h5>
+                <h5>Jelajahi</h5>
 
                 <ul>
 
                     <li>
-
                         <a href="{{ route('home') }}">
+                            <i class="bi bi-chevron-right"></i>
                             Home
                         </a>
-
                     </li>
 
                     <li>
-
                         <a href="{{ route('products.index') }}">
-                            Produk
+                            <i class="bi bi-chevron-right"></i>
+                            Semua Produk
                         </a>
-
                     </li>
 
                     <li>
-
                         <a href="{{ route('categories.index') }}">
+                            <i class="bi bi-chevron-right"></i>
                             Kategori
                         </a>
+                    </li>
 
+                    <li>
+                        <a href="{{ route('cart.index') }}">
+                            <i class="bi bi-chevron-right"></i>
+                            Keranjang
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('home') }}#lokasi">
+                            <i class="bi bi-chevron-right"></i>
+                            Lokasi Toko
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('guide') }}">
+                            <i class="bi bi-chevron-right"></i>
+                            Cara Belanja & FAQ
+                        </a>
                     </li>
 
                 </ul>
 
             </div>
 
-            {{-- Kontak --}}
-            <div class="col-lg-4 mb-4">
 
-                <h5>
+            {{-- KONTAK --}}
+            <div class="col-lg-4 col-md-6">
 
-                    Hubungi Kami
-
-                </h5>
+                <h5>Hubungi Kami</h5>
 
                 <div class="contact-row">
 
@@ -388,26 +764,69 @@
                 </div>
 
                 <div class="contact-row">
+
                     <i class="bi bi-envelope-fill"></i>
-                    <span>aurabagstore@gmail.com</span>
+
+                    <span>
+                        aurabagstore@gmail.com
+                    </span>
+
                 </div>
 
                 <div class="contact-row">
-                    <i class="bi bi-phone-fill"></i>
-                    <span>+62 812-3456-7890</span>
+
+                    <i class="bi bi-clock-fill"></i>
+
+                    <span>
+                        Jam Operasional<br>
+                        Senin – Sabtu, 09.00 – 21.00 WIB
+                    </span>
+
+                </div>
+
+                <div class="contact-row">
+
+                    <i class="bi bi-chat-dots-fill"></i>
+
+                    <span>
+                        Pesan dibalas selama jam operasional
+                    </span>
+
                 </div>
 
             </div>
 
         </div>
 
+
         <hr class="aura-footer-divider">
+
 
         <div class="aura-footer-bottom">
 
-            © {{ date('Y') }}
-            Aura Bag Store.
-            All Rights Reserved.
+            <div>
+
+                © {{ date('Y') }}
+                Aura Bag Store.
+                All Rights Reserved.
+
+            </div>
+
+            <div class="footer-bottom-links">
+
+                <a href="{{ route('home') }}">
+                    Beranda
+                </a>
+
+                <a href="{{ route('products.index') }}">
+                    Koleksi
+                </a>
+
+                <a href="{{ route('cart.index') }}">
+                    Keranjang
+                </a>
+
+            </div>
 
         </div>
 
